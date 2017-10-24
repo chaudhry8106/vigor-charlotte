@@ -4,6 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,8 +16,19 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
   "bugs": {
     "url": "https://github.com/chaudhry8106/vigor-charlotte/issues"
   },
-  "homepage": "https://github.com/chaudhry8106/vigor-charlotte#readme"
+  "homepage": "https://github.com/chaudhry8106/vigor-charlotte#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.4",
+    "path": "^0.12.7",
+    "react-router-dom": "^4.2.2"
+  }
 }
