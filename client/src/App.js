@@ -1,17 +1,26 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./Components/main";
-//import Saved from "./components/saved";
-
+import Dash from "./pages/Dash";
+import Appointments from "./pages/Appointments";
+import Contact from "./pages/Contact";
+import NoMatch from "./pages/NoMatch";
+import Nav from "./components/Nav";
+import Header from "./components/Header";
 
 const App = () =>
   <Router>
     <div>
-      <Switch>
-        <Route exact path="/" component={Main} />
-        <Route exact path="/appointments" component={Main} />
-      </Switch>
+      <Nav />
+      <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Dash} />
+          {<Route exact path="/appointments" component={Appointments} />}
+          {<Route exact path="/contact" component={Contact} />}
+          {<Route component={NoMatch} />}
+        </Switch>
+      </main>
     </div>
   </Router>;
-
+  
 export default App;
