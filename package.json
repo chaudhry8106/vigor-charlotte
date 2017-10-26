@@ -10,11 +10,8 @@
     "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chaudhry8106/vigor-charlotte.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/chaudhry8106/vigor-charlotte.git",
+  "author": "Lisa <lchris19@uncc.edu>",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
@@ -29,6 +26,8 @@
     "express": "^4.16.2",
     "mongoose": "^4.12.4",
     "path": "^0.12.7",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2"
   }
 }
