@@ -1,7 +1,8 @@
 const db = require("../models");
 const express = require("express");
 const app = express();
-
+const twilio = require("twilio");
+const config = require('../config')
 
 module.exports = {
     findAll: function(req, res) {
@@ -20,9 +21,22 @@ module.exports = {
         db.Appointment
             .create(req.body)
             .then(dbModel => {
-                //add functionality that will send a text message to the user using Twilio
-                const appointment = req.body;
-                console.log(appointment.phone);
+                let user = req.body;
+                let accountSid = 'AC741f233849b2d6f55b7176d377a74257'; // Your Account SID from www.twilio.com/console
+                let authToken = 'your_auth_token'; // Your Auth Token from www.twilio.com/console
+                let client = new twilio(accountSid, authToken);
+                let smsBody = `${user.name}, your appointment is scheduled for Date: ${user.date} at Time: ${user.slot}`;
+                let userNumber = user.number
+                client.messages.create({
+                        body: smsBody,
+                        to: '+1' + userNumber, // Text this number
+                        from: '+12345678901' // From a valid Twilio number
+                    })
+                    .then((message) => console.log(message.sid));
+
+                console.log(`Your appointment is scheduled:
+Date: ${user.date}
+Time: ${user.slot}`);
                 res.json(dbModel);
             })
             .catch(err => res.status(422).json(err));
