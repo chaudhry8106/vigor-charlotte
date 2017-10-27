@@ -20,6 +20,9 @@ module.exports = {
         db.Appointment
             .create(req.body)
             .then(dbModel => {
+                //add functionality that will send a text message to the user using Twilio
+                const appointment = req.body;
+                console.log(appointment.phone);
                 res.json(dbModel);
             })
             .catch(err => res.status(422).json(err));
