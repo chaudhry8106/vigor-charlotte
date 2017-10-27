@@ -7,6 +7,7 @@ import DatePicker from 'material-ui/DatePicker'
 import TimePicker from "material-ui/TimePicker"
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
+import SnackBar from 'material-ui/Snackbar'
 import RaisedButton from 'material-ui/RaisedButton';
 import moment from 'moment'
 import axios from 'axios'
@@ -23,13 +24,15 @@ state = {
   lastName:"",
   date: "",
   slot: "",
-  confirmationModalOpen: false
+  confirmationModalOpen: false,
+  confirmationSnackbarOpen: false
 }
 
-  handleSubmit() {
+  handleSubmit(event) {
+   
     const appointment = {
-      date: moment(this.state.appointmentDate).format('YYYY-DD-MM'),
-      slot: this.state.appointmentSlot,
+      date: moment(this.state.date).format('YYYY-DD-MM'),
+      slot: this.state.slot,
       name: this.state.firstName + ' ' + this.state.lastName,
       email: this.state.email,
       phone: this.state.phone
@@ -65,7 +68,7 @@ state = {
       <p>Name: <span style={spanStyle}>{this.state.firstName} {this.state.lastName}</span></p>
       <p>Number: <span style={spanStyle}>{this.state.phone}</span></p>
       <p>Email: <span style={spanStyle}>{this.state.email}</span></p>
-      <p>Appointment: <span style={spanStyle}>{moment(this.state.date).format('dddd[,] MMMM Do[,] YYYY')}</span> at <span style={spanStyle}>{moment().hour(9).minute(0).add(this.state.slot, 'hours').format('h:mm a')}</span></p>
+      <p>Appointment: <span style={spanStyle}>{moment(this.state.date).format('dddd[,] MMMM Do[,] YYYY')}</span> at <span style={spanStyle}>{moment(this.state.slot).format('h:mm a')}</span></p>
     </section>
   }
 
@@ -109,7 +112,12 @@ state = {
               <h4>Select a Start Time (Between 9am and 5pm):</h4>
               <TimePicker 
               minutesStep={60}
-              onChange={(evt, newValue) => this.setState({ slot: newValue })}/>
+              onChange={(evt, newValue) => 
+              {
+                console.log(moment(newValue, "hh mm"));
+                this.setState({ slot: newValue })
+              }
+                }/>
               <h4>Share your contact information with us and we'll send you a reminder:</h4>
               <section>
                     <TextField
@@ -155,8 +163,13 @@ state = {
             title="Confirm your appointment">
             {this.renderAppointmentConfirmation()}
           </Dialog>
+
+          <SnackBar
+            open={this.state.confirmationSnackbarOpen}
+            message={this.state.confirmationSnackbarMessage || ''}
+            autoHideDuration={10000}
+            onRequestClose={() => this.setState({ confirmationSnackbarOpen: false })} />
               
-              <div id="calendar"></div>
             </div>
           </div>
         </section>
