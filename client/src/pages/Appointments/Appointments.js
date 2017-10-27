@@ -23,7 +23,11 @@ class Appointments extends Component {
               </div>
               
               <h6 class="card-subtitle mb-2 text-muted">What's coming up</h6>
-              
+        
+                <div class="calendly-inline-widget" id="calendar" data-url="https://calendly.com/vigor-charlotte">
+                
+                </div>
+
               <div id="calendar"></div>
             </div>
           </div>
