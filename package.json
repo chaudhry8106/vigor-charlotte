@@ -25,8 +25,11 @@
   },
   "homepage": "https://github.com/chaudhry8106/vigor-charlotte#readme",
   "dependencies": {
+    "DatePicker": "^2.0.0",
+    "axios": "^0.17.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "material-ui": "^0.19.4",
     "mongoose": "^4.12.4",
     "path": "^0.12.7",
     "react-router-dom": "^4.2.2"

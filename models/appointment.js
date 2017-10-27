@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const appointmentSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
@@ -15,11 +15,12 @@ const appointmentSchema = new Schema({
         required: true
     },
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
     },
     slot: {
-        type: String
+        type: String,
+        unique: true
     }
 });
 const Appointment = mongoose.model("Appointment", appointmentSchema);
