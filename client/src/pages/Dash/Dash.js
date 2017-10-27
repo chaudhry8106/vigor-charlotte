@@ -2,10 +2,32 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
+import axios from "axios";
 
 class Dash extends Component {
+state = {
+  quote: "",
+  author: ""
+}
+componentWillMount(){
+  axios.get('http://quotes.rest/qod.json')
+    .then(response => {
+      let createQuote = response.data.contents.quotes[0];
+      console.log(createQuote);
+      this.setState({quote: createQuote.quote, author: createQuote.author})
+      })
+    .catch(err => {console.log(err)});
 
 
+  axios.get("/api/clients")
+  .then(response =>
+  {
+    console.log(response);
+  })
+  .catch(err=>console.log(err));
+
+}
+  
   render() {
     return (
       <Container fluid>
@@ -15,9 +37,14 @@ class Dash extends Component {
                 <div className="col-md-12 col-lg-8">
                   <div className="jumbotron">
                     <h1 className="mb-4">Hello, world!</h1>
-                    <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                    <p>It uses utility classNamees for typography and spacing to space content out within the larger container.</p>
+                    <p className="quote">{`"${this.state.quote}"`}</p>
+                    <p className="author">{`---${this.state.author}`}</p>
                     <p className="lead"><a className="btn btn-primary btn-lg mt-2" href="#" role="button">Learn more</a></p>
+                    <span style={{zIndex:"50", fontSize:"0.9em"}}><img src="https://theysaidso.com/branding/theysaidso.png" 
+                    height={"20"} width={"20"} alt={"theysaidso.com"}/><a href="https://theysaidso.com" target="_blank" 
+                    title="Powered by quotes from theysaidso.com" 
+                    style={{color: "#9fcc25", marginLeft: "4px", verticalAlign:"middle"}}>theysaidso.com</a></span>                 
+                 
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
