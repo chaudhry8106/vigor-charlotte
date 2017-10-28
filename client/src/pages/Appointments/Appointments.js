@@ -176,7 +176,7 @@ state = {
                 
                 </div>
 
-              <div id="calendar"></div>
+              {/* <div id="calendar"></div> */}
             </div>
           </div>
         </section>
