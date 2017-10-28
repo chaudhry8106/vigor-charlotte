@@ -6,9 +6,11 @@ router.route("/")
     .get(apptController.findAll)
     .post(apptController.create);
 
+router.route("/userSignup")
+    .post(apptController.createUser);
+
 // Matches with "/api/appointment/:id"
-router
-    .route("/:id")
+router.route("/:id")
     .get(apptController.findById)
     //.put(apptController.update)
     .delete(apptController.remove);

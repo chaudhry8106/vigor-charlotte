@@ -28,6 +28,7 @@
     "DatePicker": "^2.0.0",
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
+    "crypto": "^1.0.1",
     "express": "^4.16.2",
     "material-ui": "^0.19.4",
     "mongoose": "^4.12.4",

@@ -10,9 +10,8 @@ class LandingPage extends Component {
   render() {
     return (
       <Container fluid>
-          <div className="text-center">
-            
-          
+        <div className="text-center">
+    
         <br />
         <br />
         <br />
@@ -31,20 +30,20 @@ class LandingPage extends Component {
                             </ul>
                             <form role="form">
                                 <div className="form-group row">
-                                    <label for="inputEmailForm" className="sr-only control-label">Email</label>
+                                    {/* <label for="inputEmailForm" className="sr-only control-label">Email</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="inputEmailForm" placeholder="email" required="" />
+                                        <input type="text" className="form-control" id="inputEmailForm" placeholder="Email" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label for="inputPasswordForm" className="sr-only control-label">Password</label>
+                                    {/* <label for="inputPasswordForm" className="sr-only control-label">Password</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="inputPasswordForm" placeholder="password" required="" />
+                                        <input type="text" className="form-control" id="inputPasswordForm" placeholder="Password" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                        <button type="submit" className="btn btn-secondary-outline btn-lg btn-block">Sign-in</button>
+                                        <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Sign-in</button>
                                     </div>
                                 </div>
                             </form>
@@ -60,28 +59,49 @@ class LandingPage extends Component {
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
                             </ul>
-                            <form role="form">
+                            <form role="form" action="/userSignup" method="post">
                                 <div className="form-group row">
-                                    <label for="input2EmailForm" className="sr-only control-label">email</label>
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2EmailForm" placeholder="email" required="" />
+                                        <select name="gender" class="form-control" type="" id="gender">
+                                            <option value="">Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label for="input2PasswordForm" className="sr-only control-label">password</label>
+                                    {/* <label for="input2FnameForm" className="sr-only control-label">First Name</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2PasswordForm" placeholder="password" required="" />
+                                        <input type="text" className="form-control" id="input2FnameForm" placeholder="First Name" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label for="input2Password2Form" className="sr-only control-label">verify</label>
+                                    {/* <label for="input2LnameForm" className="sr-only control-label">Last Name</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2Password2Form" placeholder="verify password" required="" />
+                                        <input type="text" className="form-control" id="input2LnameForm" placeholder="Last Name" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    {/* <label for="input2EmailForm" className="sr-only control-label">email</label> */}
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="input2EmailForm" placeholder="Email" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    {/* <label for="input2PasswordForm" className="sr-only control-label">password</label> */}
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="input2PasswordForm" placeholder="Password" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    {/* <label for="input2Password2Form" className="sr-only control-label">verify</label> */}
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="input2Password2Form" placeholder="Verify password" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                        <button type="submit" className="btn btn-secondary-outline btn-lg btn-block">Register</button>
+                                        <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Register</button>
                                     </div>
                                 </div>
                             </form>
@@ -91,10 +111,7 @@ class LandingPage extends Component {
             </div>
         </div>
 
-
-
-
-          </div>
+        </div>
       </Container>
     );
   }

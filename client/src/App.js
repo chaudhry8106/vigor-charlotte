@@ -5,8 +5,6 @@ import Appointments from "./pages/Appointments";
 import LandingPage from "./pages/LandingPage";
 import Contact from "./pages/Contact";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
-import Header from "./components/Header";
 
 const App = () =>
   <Router>
