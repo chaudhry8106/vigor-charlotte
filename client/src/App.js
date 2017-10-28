@@ -8,7 +8,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 import About from "./pages/About";
-import LandingPage from "./pages/LandingPage";
+
 
 const App = () =>
   <Router>

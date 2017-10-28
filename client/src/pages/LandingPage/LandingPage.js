@@ -6,10 +6,6 @@ import axios from "axios";
 
 
 class LandingPage extends Component {
-    handleLogin=event =>{
-        event.preventDefault();
-        return axios.get('/login');
-    }
 
   render() {
     return (
