@@ -3,7 +3,10 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 
 const NoMatch = () =>
-  <Container fluid>
+  <Container>
+      <br />
+      <br />
+      <br />
     <Row>
       <Col size="md-12">
         <Jumbotron>
