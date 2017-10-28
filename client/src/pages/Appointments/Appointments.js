@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
+import Nav from "../../components/Nav";
+import Header from "../../components/Header";
 import Dialog from 'material-ui/Dialog'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from "material-ui/TimePicker"
@@ -91,6 +93,9 @@ state = {
     
     return (
       <Container fluid>
+        <Nav />
+        <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
+        <Header />
         <section>
           <div class="card mb-4">
             <div class="card-block">
@@ -176,6 +181,7 @@ state = {
             </div>
           </div>
         </section>
+        </main>
       </Container>
     );
   }

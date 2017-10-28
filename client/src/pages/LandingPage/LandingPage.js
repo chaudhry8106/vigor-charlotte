@@ -12,31 +12,82 @@ class LandingPage extends Component {
       <Container fluid>
           <div className="text-center">
             
-
-
-          <div class="card rounded-0">
-            <div class="card-header">
-                <h3 class="mb-0">Login</h3>
-            </div>
-            <div class="card-body">
-                <form class="form" role="form" autocomplete="off" id="formLogin">
-                    <div class="form-group">
-                        <label for="uname1">Username</label>
-                        <input type="text" class="form-control form-control-lg rounded-0" name="uname1" id="uname1" required="" />
+          
+        <br />
+        <br />
+        <br />
+        <div className="row" id="parent">
+            <div className="col-md-8 col-12 offset-sm-4 offset-lg-3 offset-xl-2 card d-block border-0 py-2">
+                <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardLogin" data-parent="#parent">Login</a>
+                <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardRegister" data-parent="#parent">Register</a>
+                <div className="collapse show py-2" id="cardLogin">
+                    <div className="card">
+                        <div className="card-block">
+                            <h2 className="text-xs-center">Login</h2>
+                            <ul className="list-inline text-center">
+                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Twitter"><i className="fa fa-2x fa-twitter"></i></a>&nbsp; </li>
+                                <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
+                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
+                            </ul>
+                            <form role="form">
+                                <div className="form-group row">
+                                    <label for="inputEmailForm" className="sr-only control-label">Email</label>
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="inputEmailForm" placeholder="email" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label for="inputPasswordForm" className="sr-only control-label">Password</label>
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="inputPasswordForm" placeholder="password" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
+                                        <button type="submit" className="btn btn-secondary-outline btn-lg btn-block">Sign-in</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control form-control-lg rounded-0" id="pwd1" required="" autocomplete="new-password" />
+                </div>
+                <div className="collapse py-2" id="cardRegister">
+                    <div className="card">
+                        <div className="card-block">
+                            <h2 className="text-center">Register</h2>
+                            <ul className="list-inline text-center">
+                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Twitter"><i className="fa fa-2x fa-twitter"></i></a>&nbsp; </li>
+                                <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
+                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
+                            </ul>
+                            <form role="form">
+                                <div className="form-group row">
+                                    <label for="input2EmailForm" className="sr-only control-label">email</label>
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="input2EmailForm" placeholder="email" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label for="input2PasswordForm" className="sr-only control-label">password</label>
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="input2PasswordForm" placeholder="password" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label for="input2Password2Form" className="sr-only control-label">verify</label>
+                                    <div className="offset-sm-2 col-sm-8">
+                                        <input type="text" className="form-control" id="input2Password2Form" placeholder="verify password" required="" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
+                                        <button type="submit" className="btn btn-secondary-outline btn-lg btn-block">Register</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div>
-                        <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" />
-                          <span class="custom-control-indicator"></span>
-                          <span class="custom-control-description small">Remember me on this computer</span>
-                        </label>
-                    </div>
-                    <button type="button" class="btn btn-success btn-lg float-right">Login</button>
-                </form>
+                </div>
             </div>
         </div>
 
