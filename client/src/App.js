@@ -6,6 +6,8 @@ import Contact from "./pages/Contact";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
+import About from "./pages/About";
+import LandingPage from "./pages/LandingPage";
 
 const App = () =>
   <Router>
@@ -15,6 +17,8 @@ const App = () =>
         <Header />
         <Switch>
           <Route exact path="/" component={Dash} />
+          <Route exact path="/landing" component={LandingPage} />
+          <Route exact path="/about" component={About} />
           {<Route exact path="/appointments" component={Appointments} />}
           {<Route exact path="/contact" component={Contact} />}
           {<Route component={NoMatch} />}
