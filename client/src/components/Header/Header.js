@@ -1,9 +1,9 @@
 import React from "react";
 
-const Header = () =>
+const Header = ({children}) =>
 <header className="page-header row justify-center">
     <div className="col-md-6 col-lg-8" >
-      <h1 className="float-left text-center text-md-left">Dashboard</h1>
+     {children}
     </div>
 
     <div className="dropdown user-dropdown col-md-6 col-lg-4 text-center text-md-right">

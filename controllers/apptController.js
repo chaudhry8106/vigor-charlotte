@@ -34,6 +34,7 @@ module.exports = {
         console.log(md5Pw);
         console.log(req.body);
         
+
     },
     remove: function(req, res) {
         db.Appointment
