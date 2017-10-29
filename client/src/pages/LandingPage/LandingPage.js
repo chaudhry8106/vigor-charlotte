@@ -59,7 +59,7 @@ class LandingPage extends Component {
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
                             </ul>
-                            <form role="form" action="/userSignup" method="post">
+                            <form role="form" action="/api/appointments/userSignup" method="post">
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8">
                                         <select name="gender" class="form-control" type="" id="gender">
@@ -70,31 +70,31 @@ class LandingPage extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2FnameForm" className="sr-only control-label">First Name</label> */}
+                                    {<label for="input2FnameForm" className="sr-only control-label">First Name</label>}
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" className="form-control" id="input2FnameForm" placeholder="First Name" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2LnameForm" className="sr-only control-label">Last Name</label> */}
+                                    {<label for="input2LnameForm" className="sr-only control-label">Last Name</label>}
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" className="form-control" id="input2LnameForm" placeholder="Last Name" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2EmailForm" className="sr-only control-label">email</label> */}
+                                    {<label for="input2EmailForm" className="sr-only control-label">Email</label>}
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" className="form-control" id="input2EmailForm" placeholder="Email" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2PasswordForm" className="sr-only control-label">password</label> */}
+                                    {<label for="input2PasswordForm" className="sr-only control-label">Password</label>}
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" className="form-control" id="input2PasswordForm" placeholder="Password" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2Password2Form" className="sr-only control-label">verify</label> */}
+                                    {<label for="input2Password2Form" className="sr-only control-label">Verify</label>}
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" className="form-control" id="input2Password2Form" placeholder="Verify password" required="" />
                                     </div>
