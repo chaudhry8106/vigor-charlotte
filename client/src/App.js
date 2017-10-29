@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Dash from "./pages/Dash";
 import Appointments from "./pages/Appointments";
 import LandingPage from "./pages/LandingPage";
@@ -27,5 +27,7 @@ const App = () =>
       </main>
     </div>
   </Router>;
+
+
   
 export default App;

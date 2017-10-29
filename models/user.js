@@ -12,7 +12,6 @@ const userSchema = new Schema({
     },
     phone: {
         type: String,
-        required: true
     },
     fb_id: {
         type: Number

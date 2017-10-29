@@ -15,6 +15,8 @@ state = {
     passConfirm: ""
   };
 
+ 
+
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
@@ -28,6 +30,13 @@ state = {
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    if(this.state.firstName == "" ||
+        this.state.lastName == ""||
+        this.state.userEmail == ""||
+        this.state.userPass == ""||
+        this.state.passConfirm == "") {
+            return alert("Please complete all fields");
+        }
     if (this.state.userPass !== this.state.passConfirm){
         return alert("Passwords do not match");
     } else {
@@ -40,7 +49,7 @@ state = {
         axios.post("/userSignup", user).then(res=>{
             console.log(res);
                 // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        alert(`Hello ${user.name}.  Welcome!`);
+        // alert(`Hello ${user.name}.  Welcome!`);
             this.setState({
             firstName: "",
             lastName: "",
@@ -49,7 +58,8 @@ state = {
             passConfirm: ""
         });
         
-        }).catch(err=>console.log(err));     
+        }).catch(err=>console.log(err));  
+        this.props.history.push("/");   
     } 
     
   };
@@ -98,7 +108,9 @@ state = {
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
+                                        <Link to ="/">
                                         <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Sign-in</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </form>
@@ -189,11 +201,11 @@ state = {
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                    <Link to ='/'>
+                    
                                         <button type="submit" 
                                         className="btn btn-primary btn-lg mt-2 btn-block"
                                         onClick={this.handleFormSubmit}>Register</button>
-                                    </Link>
+                                   
                                     </div>
                                 </div>
                             </form>
@@ -209,4 +221,4 @@ state = {
   }
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);
