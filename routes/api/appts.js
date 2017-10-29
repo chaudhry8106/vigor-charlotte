@@ -5,7 +5,7 @@ const apptController = require("../../controllers/apptController");
 router.route("/")
     .get(apptController.findAll)
     .post(apptController.create);
-
+//this route is '/api/appointments/userSignup'
 router.route("/userSignup")
     .post(apptController.createUser);
 
