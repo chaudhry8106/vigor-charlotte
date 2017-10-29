@@ -13,7 +13,7 @@ router.use("/userSignup", function(req, res) {
 
         console.log(md5Pw);
         console.log(req.body);
-        res.send();
+        res.redirect("/");
     })
     // If no API routes are hit, send the React app
 router.use(function(req, res) {

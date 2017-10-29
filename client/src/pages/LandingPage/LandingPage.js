@@ -51,7 +51,7 @@ state = {
         
         }).catch(err=>console.log(err));     
     } 
-    <Redirect to='/'/> 
+    
   };
 
   render() {
@@ -189,10 +189,11 @@ state = {
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                        
+                                    <Link to ='/'>
                                         <button type="submit" 
                                         className="btn btn-primary btn-lg mt-2 btn-block"
                                         onClick={this.handleFormSubmit}>Register</button>
+                                    </Link>
                                     </div>
                                 </div>
                             </form>
