@@ -12,7 +12,9 @@ state = {
     lastName: "",
     userEmail: "",
     userPass: "",
-    passConfirm: ""
+    passConfirm: "",
+    userName: "",
+    userPW: ""
   };
 
  
@@ -30,39 +32,71 @@ state = {
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    if(this.state.firstName == "" ||
-        this.state.lastName == ""||
-        this.state.userEmail == ""||
-        this.state.userPass == ""||
-        this.state.passConfirm == "") {
+    if(this.state.firstName === "" ||
+        this.state.lastName === ""||
+        this.state.userEmail === ""||
+        this.state.userPass === ""||
+        this.state.passConfirm === "") {
             return alert("Please complete all fields");
         }
+        //making sure password matches confirmation
     if (this.state.userPass !== this.state.passConfirm){
         return alert("Passwords do not match");
     } else {
+        //create a newUser object
         const user = {
             name: this.state.firstName + " " + this.state.lastName,
             email: this.state.userEmail,
             password: this.state.userPass
 
         }
+        //add user to user database, the clear out the new user form
         axios.post("/userSignup", user).then(res=>{
             console.log(res);
-                // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        // alert(`Hello ${user.name}.  Welcome!`);
             this.setState({
             firstName: "",
             lastName: "",
             userEmail: "",
             userPass: "",
             passConfirm: ""
+            
         });
         
-        }).catch(err=>console.log(err));  
-        this.props.history.push("/");   
+        }).catch(err=>console.log(err));
+        //redirect user to dashboard/main page.  This will load react component according to router in App.js within client/src folder 
+        this.props.history.push("/dash");   
     } 
-    
   };
+  handleLogin = (event) => {
+      event.preventDefault();
+      const userLogin = {
+          login_name: this.state.userName,
+          user_pass: this.state.userPW
+      }
+      //send username and password to server
+      axios.post("/userSignup/userCheck", userLogin)
+      .then(res=>{
+            console.log(res);
+            //reset form data
+            this.setState({
+          userName: "",
+          userPW: ""            
+        });
+        //returning email address if password is correct
+        //if res.data is an empty string, password was not correct
+        if(res.data === ""){
+            this.props.history.push("/");
+        } else {
+            //otherwise password is good and send user to main page
+            this.props.history.push({
+                pathname: "/dash",
+                //this is only good for the single route, email is lost while navigating through the nav
+            state: {email: res.data}
+            });
+        }
+        
+        }).catch(err=>console.log(err));
+  }
 
   render() {
     return (
@@ -90,17 +124,23 @@ state = {
                                     {/* <label for="inputEmailForm" className="sr-only control-label">Email</label> */}
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" 
-                                        className="form-control" 
-                                        id="inputEmailForm" p
-                                        laceholder="Email" r
-                                        equired="" />
+                                        className="form-control"
+                                        value={this.state.userName}
+                                        name="userName"
+                                        onChange={this.handleInputChange}  
+                                        id="inputEmailForm" 
+                                        placeholder="Email" 
+                                        required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     {/* <label for="inputPasswordForm" className="sr-only control-label">Password</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" 
-                                        className="form-control" 
+                                        <input type="password" 
+                                        className="form-control"
+                                        value={this.state.userPW}
+                                        name="userPW"
+                                        onChange={this.handleInputChange}   
                                         id="inputPasswordForm"
                                         placeholder="Password" 
                                         required="" />
@@ -108,9 +148,7 @@ state = {
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                        <Link to ="/">
-                                        <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Sign-in</button>
-                                        </Link>
+                                        <button onClick={this.handleLogin} type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Sign-in</button>
                                     </div>
                                 </div>
                             </form>

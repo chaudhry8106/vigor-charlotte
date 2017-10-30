@@ -13,9 +13,10 @@ const userSchema = new Schema({
     phone: {
         type: String,
     },
-    fb_id: {
-        type: Number
-    }
+    login: [{
+        type: Schema.Types.ObjectId,
+        ref: "Login"
+    }]
 });
 const User = mongoose.model("User", userSchema);
 

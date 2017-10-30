@@ -17,8 +17,8 @@ const App = () =>
       <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
         <Header />
         <Switch>
-          <Route exact path="/" component={Dash} />
-          <Route exact path="/landing" component={LandingPage} />
+          <Route exact path="/dash" component={Dash} />
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/about" component={About} />
           {<Route exact path="/appointments" component={Appointments} />}
           {<Route exact path="/contact" component={Contact} />}

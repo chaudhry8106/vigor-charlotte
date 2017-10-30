@@ -11,7 +11,7 @@ const router = require("express").Router();
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/appointments", {
+    process.env.MONGODB_URI || "mongodb://localhost/vigor", {
         useMongoClient: true
     }
 );
