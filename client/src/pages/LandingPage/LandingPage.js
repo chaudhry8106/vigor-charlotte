@@ -64,7 +64,7 @@ state = {
         
         }).catch(err=>console.log(err));
         //redirect user to dashboard/main page.  This will load react component according to router in App.js within client/src folder 
-        this.props.history.push("/dash");   
+        this.props.history.push("/");   
     } 
   };
   handleLogin = (event) => {
@@ -85,11 +85,11 @@ state = {
         //returning email address if password is correct
         //if res.data is an empty string, password was not correct
         if(res.data === ""){
-            this.props.history.push("/");
+            this.props.history.push("/cover");
         } else {
             //otherwise password is good and send user to main page
             this.props.history.push({
-                pathname: "/dash",
+                pathname: "/",
                 //this is only good for the single route, email is lost while navigating through the nav
             state: {email: res.data}
             });
