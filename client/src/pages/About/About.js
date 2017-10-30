@@ -5,7 +5,7 @@ import { List, ListItem } from "../../components/List";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
 
-class About extends Component {
+class Contact extends Component {
 
 
   render() {
@@ -14,7 +14,7 @@ class About extends Component {
         <Nav />
         <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
         <Header>
-          <h1 className="float-left text-center text-md-left">About</h1>
+          <h1 className="float-left text-center text-md-left">Contact</h1>
         </Header>
         <section className="row">
           <div class="col-lg-12 mb-4">
@@ -26,6 +26,8 @@ class About extends Component {
               </div>
             </div>
           </div>
+
+
         </section>
         </main>
       </Container>
@@ -33,4 +35,4 @@ class About extends Component {
   }
 }
 
-export default About;
+export default Contact;
