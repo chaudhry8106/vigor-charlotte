@@ -7,6 +7,10 @@ import LandingPage from "./pages/LandingPage";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import NoMatch from "./pages/NoMatch";
+import Nav from "./components/Nav";
+import Header from "./components/Header";
+import About from "./pages/About";
+
 
 const App = () =>
   <Router>

@@ -1,11 +1,58 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Route, Link, Redirect, withRouter } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
+import axios from "axios";
 
 
 class LandingPage extends Component {
+// Setting the component's initial state
+state = {
+    firstName: "",
+    lastName: "",
+    userEmail: "",
+    userPass: "",
+    passConfirm: ""
+  };
 
+  handleInputChange = event => {
+    // Getting the value and name of the input which triggered the change
+    const { name, value } = event.target;
+
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault();
+    if (this.state.userPass !== this.state.passConfirm){
+        return alert("Passwords do not match");
+    } else {
+        const user = {
+            name: this.state.firstName + " " + this.state.lastName,
+            email: this.state.userEmail,
+            password: this.state.userPass
+
+        }
+        axios.post("/userSignup", user).then(res=>{
+            console.log(res);
+                // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+        alert(`Hello ${user.name}.  Welcome!`);
+            this.setState({
+            firstName: "",
+            lastName: "",
+            userEmail: "",
+            userPass: "",
+            passConfirm: ""
+        });
+        
+        }).catch(err=>console.log(err));     
+    } 
+    
+  };
 
   render() {
     return (
@@ -32,13 +79,21 @@ class LandingPage extends Component {
                                 <div className="form-group row">
                                     {/* <label for="inputEmailForm" className="sr-only control-label">Email</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="inputEmailForm" placeholder="Email" required="" />
+                                        <input type="text" 
+                                        className="form-control" 
+                                        id="inputEmailForm" p
+                                        laceholder="Email" r
+                                        equired="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     {/* <label for="inputPasswordForm" className="sr-only control-label">Password</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="inputPasswordForm" placeholder="Password" required="" />
+                                        <input type="text" 
+                                        className="form-control" 
+                                        id="inputPasswordForm"
+                                        placeholder="Password" 
+                                        required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
@@ -59,7 +114,7 @@ class LandingPage extends Component {
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
                             </ul>
-                            <form role="form" action="/userSignup" method="post">
+                            <form role="form" action="/api/appointments/userSignup" method="post">
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8">
                                         <select name="gender" class="form-control" type="" id="gender">
@@ -70,38 +125,75 @@ class LandingPage extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2FnameForm" className="sr-only control-label">First Name</label> */}
+                                    {<label for="input2FnameForm" className="sr-only control-label">First Name</label>}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2FnameForm" placeholder="First Name" required="" />
+                                        <input type="text" 
+                                        className="form-control"
+                                        value={this.state.firstName}
+                                        name="firstName"
+                                        onChange={this.handleInputChange} 
+                                        id="input2FnameForm" 
+                                        placeholder="First Name" 
+                                        required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2LnameForm" className="sr-only control-label">Last Name</label> */}
+                                    {<label for="input2LnameForm" className="sr-only control-label">Last Name</label>}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2LnameForm" placeholder="Last Name" required="" />
+                                        <input type="text" 
+                                        className="form-control"
+                                        value={this.state.lastName}
+                                        name="lastName"
+                                        onChange={this.handleInputChange}  
+                                        id="input2LnameForm" 
+                                        placeholder="Last Name" 
+                                        required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2EmailForm" className="sr-only control-label">email</label> */}
+                                    {<label for="input2EmailForm" className="sr-only control-label">Email</label>}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2EmailForm" placeholder="Email" required="" />
+                                        <input type="text" 
+                                        className="form-control"
+                                        value={this.state.userEmail}
+                                        name="userEmail"
+                                        onChange={this.handleInputChange}  
+                                        id="input2EmailForm" 
+                                        placeholder="Email" 
+                                        required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2PasswordForm" className="sr-only control-label">password</label> */}
+                                    {<label for="input2PasswordForm" className="sr-only control-label">Password</label>}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2PasswordForm" placeholder="Password" required="" />
+                                        <input type="password" 
+                                        className="form-control"
+                                        value={this.state.userPass}
+                                        name="userPass"
+                                        onChange={this.handleInputChange} 
+                                        id="input2PasswordForm" 
+                                        placeholder="Password" required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {/* <label for="input2Password2Form" className="sr-only control-label">verify</label> */}
+                                    {<label for="input2Password2Form" className="sr-only control-label">Verify</label>}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" className="form-control" id="input2Password2Form" placeholder="Verify password" required="" />
+                                        <input type="password" 
+                                        className="form-control"
+                                        value={this.state.passConfirm}
+                                        name="passConfirm"
+                                        onChange={this.handleInputChange}  
+                                        id="input2Password2Form" placeholder="Verify password" 
+                                        required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                        <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Register</button>
+                                    <Link to ='/'>
+                                        <button type="submit" 
+                                        className="btn btn-primary btn-lg mt-2 btn-block"
+                                        onClick={this.handleFormSubmit}>Register</button>
+                                    </Link>
                                     </div>
                                 </div>
                             </form>

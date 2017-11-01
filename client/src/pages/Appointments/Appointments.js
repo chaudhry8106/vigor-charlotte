@@ -40,7 +40,13 @@ state = {
       phone: this.state.phone
     }
     axios.post('api/appointments', appointment)
-    .then(response => this.setState({ confirmationSnackbarMessage: "Appointment succesfully added!", confirmationSnackbarOpen: true, processed: true }))
+    .then(response => 
+      {
+        //send text message to users number using Twilio
+        
+        this.setState({ confirmationSnackbarMessage: "Appointment succesfully added!", confirmationSnackbarOpen: true, processed: true })
+      }
+    )
     .catch(err => {
       console.log(err)
       return this.setState({ confirmationSnackbarMessage: "Appointment failed to save.", confirmationSnackbarOpen: true })
@@ -94,10 +100,10 @@ state = {
     return (
       <Container fluid>
         <Nav />
-        <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
-        <Header>
+        
+        {/* <Header>
           <h1 className="float-left text-center text-md-left">Appointments</h1>
-        </Header>
+        </Header> */}
         <section>
           <div class="card mb-4">
             <div class="card-block">
@@ -183,7 +189,6 @@ state = {
             </div>
           </div>
         </section>
-        </main>
       </Container>
     );
   }
