@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Route, Link, Redirect, withRouter } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+// import { List, ListItem } from "../../components/List";
 import axios from "axios";
 
 
-class LandingPage extends Component {
+class Login extends Component {
 // Setting the component's initial state
 state = {
     firstName: "",
@@ -56,35 +56,6 @@ state = {
 
   render() {
     return (
-    <Container>
-      {/* <nav class="navbar navbar-dark bg-primary"> */}
-        
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Hidden brand</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
-        
-      {/* </nav> */}
       <Container fluid>
         <div className="text-center">
     
@@ -104,7 +75,7 @@ state = {
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
                             </ul>
-                            <form role="form">
+                            <form action="/api/appointments/userLogin" method="post">
                                 <div className="form-group row">
                                     {/* <label for="inputEmailForm" className="sr-only control-label">Email</label> */}
                                     <div className="offset-sm-2 col-sm-8">
@@ -143,7 +114,7 @@ state = {
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
                             </ul>
-                            <form role="form" action="/api/appointments/userSignup" method="post">
+                            <form action="/api/appointments/userSignup" method="post">
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8">
                                         <select name="gender" class="form-control" type="" id="gender">
@@ -234,9 +205,8 @@ state = {
 
         </div>
       </Container>
-      </Container>
     );
   }
 }
 
-export default LandingPage;
+export default Login;

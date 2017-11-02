@@ -288,6 +288,10 @@ p {
     text-align: center;
     border-radius: .3rem; }
 
+#login {
+  background: transparent;
+}
+
 #wrapper.toggled .sidebar-nav {
   display: none; }
 
