@@ -51,7 +51,10 @@ componentWillMount(){
     return (
       <Container fluid>
         <Nav userName={this.state.userName}/>
-        
+        <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
+        <Header>
+          <h1 className="float-left text-center text-md-left">Dashboard</h1>
+        </Header>
         <section className="row">
           <div className="col-sm-12">
             <section className="row">
@@ -104,7 +107,7 @@ componentWillMount(){
             </section>
           </div>
         </section>
-       
+       </main>
       </Container>
     );
   }
