@@ -28,7 +28,7 @@ state = {
       [name]: value
     });
   };
-
+    //new user registration
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
@@ -239,7 +239,6 @@ state = {
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                    
                                         <button type="submit" 
                                         className="btn btn-primary btn-lg mt-2 btn-block"
                                         onClick={this.handleFormSubmit}>Register</button>
