@@ -5,7 +5,7 @@ import { List, ListItem } from "../../components/List";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
 
-class Contact extends Component {
+class About extends Component {
 
 
   render() {
