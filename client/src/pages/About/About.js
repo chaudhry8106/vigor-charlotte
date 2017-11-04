@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
+import Nav from "../../components/Nav";
+import Header from "../../components/Header";
 
-class About extends Component {
+class Contact extends Component {
 
 
   render() {

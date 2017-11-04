@@ -7,7 +7,7 @@ const Nav = () =>
     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><em class="fa fa-bars"></em></a>
 
     <ul class="nav nav-pills flex-column sidebar-nav">
-      <li class="nav-item"><a class="nav-link active" href="/"><em class="fa fa-dashboard"></em> Dashboard <span class="sr-only">(current)</span></a></li>
+      <li class="nav-item"><a class="nav-link active" href="/dash"><em class="fa fa-dashboard"></em> Dashboard <span class="sr-only">(current)</span></a></li>
       <li class="nav-item"><a class="nav-link" href="/appointments"><em class="fa fa-calendar-o"></em> Appointments</a></li>
       <li class="nav-item"><a class="nav-link" href="/payments"><em class="fa fa-credit-card-alt"></em> Payments</a></li>
       <li class="nav-item"><a class="nav-link" href="/about"><em class="fa fa-info-circle"></em> About Vigor</a></li>

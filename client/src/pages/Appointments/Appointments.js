@@ -40,7 +40,13 @@ state = {
       phone: this.state.phone
     }
     axios.post('api/appointments', appointment)
-    .then(response => this.setState({ confirmationSnackbarMessage: "Appointment succesfully added!", confirmationSnackbarOpen: true, processed: true }))
+    .then(response => 
+      {
+        //send text message to users number using Twilio
+        
+        this.setState({ confirmationSnackbarMessage: "Appointment succesfully added!", confirmationSnackbarOpen: true, processed: true })
+      }
+    )
     .catch(err => {
       console.log(err)
       return this.setState({ confirmationSnackbarMessage: "Appointment failed to save.", confirmationSnackbarOpen: true })
