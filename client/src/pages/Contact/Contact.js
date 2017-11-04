@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -14,8 +15,33 @@ class Contact extends Component {
         <Nav />
         <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
         <Header>
-          <h1 className="float-left text-center text-md-left">Contact Us</h1>
+          <h1 className="float-left text-center text-md-left">Contact</h1>
         </Header>
+        <section>
+          <div className="card card-inverse card-primary">
+            <div class="card-block">
+              <section className="row">
+                <div class="col-lg-4 mb-4">
+                  <div class="card-block">
+                    <h3 className="card-title">Contact info</h3>
+                    <h3>(980) 474 1124</h3>
+                  </div>
+                </div>
+                <div class="col-lg-8 mb-8">
+                  <div class="card-block">
+                    <h3 className="card-title">Open By Appointment And Walk In</h3>
+                    <h3>216 Iverson Way, Charlotte, NC 28203</h3>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <br />
+          <div className="card">
+            <iframe src="//www.google.com/maps/embed/v1/place?q=216+Iverson+Way,+Charlotte,+NC+28203%20Rd,%20US&zoom=15&key=AIzaSyB0GBwgrG183HMdL5EBK2Pt_jrNCN52izg"></iframe>
+          </div>
+        </section>
+        <br />
         <section className="row">
           <div className="col-sm-12">
             <section className="row">
@@ -23,7 +49,7 @@ class Contact extends Component {
               <div className="col-sm-12 col-md-12">
                 <div className="card mb-12">
                   <div className="card-block">
-                    <h3 className="card-title">Contact</h3>
+                    <h3 className="card-title">Contact us</h3>
                     
                     <div className="dropdown card-title-btn-container">
                       <button className="btn btn-sm btn-subtle dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><em className="fa fa-cog"></em></button>
@@ -33,9 +59,9 @@ class Contact extends Component {
                         <a className="dropdown-item" href="#"><em className="fa fa-remove mr-1"></em> Close Window</a></div>
                     </div>
                     
-                    <h6 className="card-subtitle mb-2 text-muted">Subtitle</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">We are ready to answer all of your questions</h6>
                     
-                    <form className="form-horizontal" action="" method="post">
+                    <form className="form-horizontal" action="/contact" method="post">
                       <fieldset>
                   
                         <div className="form-group">
@@ -82,7 +108,7 @@ class Contact extends Component {
             </section>
           </div>
         </section>
-       </main>
+        </main>
       </Container>
     );
   }

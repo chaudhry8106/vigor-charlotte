@@ -246,7 +246,8 @@ state = {
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
                                         <button type="submit" 
-                                        className="btn btn-primary btn-lg mt-2 btn-block">
+                                        className="btn btn-primary btn-lg mt-2 btn-block"
+                                        onClick={this.handleRegistration}>Register
                                         </button>
                                     </div>
                                 </div>

@@ -9,11 +9,20 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <div className="text-center">Vigor
-            </div>
- 
-      </Container>
+<div>        
+<nav class="navbar navbar-expand-lg navbar-light bg-default">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand cover-brand" href="#">Vigor</a>
+  </div>
+</nav>
+<Container fluid>
+    
+</Container>
+</div>
+
     );
   }
 }

@@ -4,6 +4,7 @@ import Dash from "./pages/Dash";
 import Appointments from "./pages/Appointments";
 import Payments from "./pages/Payments";
 import LandingPage from "./pages/LandingPage";
+import Login from "./pages/Login";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import NoMatch from "./pages/NoMatch";

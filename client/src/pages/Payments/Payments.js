@@ -51,12 +51,6 @@ class Payments extends Component {
                         <input type="hidden" id="card-nonce" name="nonce" />
                     </form>
                 </div>
-
-                {/* // <div id="sq-walletbox">
-                //     Pay with a Digital Wallet
-                //     <div id="sq-apple-pay-label" className="wallet-not-enabled">Apple Pay for Web not enabled</div>
-                //     <button id="sq-apple-pay" className="button-apple-pay"></button>
-                // </div> */}
             </section>
         </main>
     </Container>

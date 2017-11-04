@@ -342,6 +342,11 @@ p {
 .no-left-margin {
   margin-left: 0; }
 
+.cover-brand {
+  font-size: 36px;
+  color: gold;
+}
+
 .page-header {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: 0rem;
