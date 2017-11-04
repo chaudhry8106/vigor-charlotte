@@ -54,12 +54,14 @@ module.exports = {
     },
     //check login to verify we have a good user, pass and username match
     checkLogin: function(req, res) {
+        console.log(req.body);
         console.log(`This should be password: ${req.body.user_pass}`);
         db.Login.findOne({
                 //finding user login from the database
                 login_name: req.body.login_name
             })
             .exec(function(err, entry) {
+
                 console.log(`User from DB: ${entry}
                 encrypted login: ${entry.login_pass}
                 salt: ${entry.salt}`);
@@ -75,7 +77,7 @@ module.exports = {
                 }
             })
             //.then(res => res.json(dbModel))
-            // .catch(err => res.status(422).json(err));
+            //.catch(err => res.status(422).json(err));
     },
     getUser: function(req, res) {
         console.log(req.body.email);

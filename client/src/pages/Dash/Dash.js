@@ -29,7 +29,7 @@ componentWillMount(){
   // })
   // .catch(err=>console.log(err));
 
-  axios.get('http://quotes.rest/qod.json')
+  axios.get('https://quotes.rest/qod.json')
     .then(response => {
       let createQuote = response.data.contents.quotes[0];
       console.log(createQuote);
