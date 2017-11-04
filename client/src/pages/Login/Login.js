@@ -14,7 +14,8 @@ state = {
     userPass: "",
     passConfirm: "",
     userName: "",
-    userPW: ""
+    userPW: "",
+    option: ""
   };
 
   handleInputChange = event => {
@@ -25,6 +26,7 @@ state = {
     this.setState({
       [name]: value
     });
+    console.log(name + ": " + value);
   };
 
   handleRegistration = event => {
@@ -52,7 +54,7 @@ state = {
         axios.post("/userSignup", user).then(res=>{
             console.log(res);
                 // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        alert(`Hello ${user.name}.  Welcome!`);
+        alert(`Hello ${user.name}.  Thank you for registering!  Please login.`);
             this.setState({
             firstName: "",
             lastName: "",
@@ -173,10 +175,11 @@ state = {
                             <form>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8">
-                                        <select name="gender" class="form-control" type="" id="gender">
+                                        <select name="gender" className="form-control" type="" id="gender"
+                                        value={this.state.option} onChange={this.handleInputChange}>
                                             <option value="">Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                            <option value="genderM">Male</option>
+                                            <option value="genderF">Female</option>
                                         </select>
                                     </div>
                                 </div>

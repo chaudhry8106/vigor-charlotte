@@ -5,7 +5,6 @@ const Login = require("../models/login");
 module.exports = {
     //createUser is creting a user in our database
     createUser: function(req, res) {
-        console.log("hi");
         //here is password modification
         var salt = "540987gf09df8ksjf5870gsd"
         var data = req.body.password + salt;
@@ -28,13 +27,13 @@ module.exports = {
                 console.log(req.body.name);
                 //this is the Mongoose Model where we actually create the user
                 db.User.create({
-                        name: req.body.name,
-                        email: req.body.email,
-                        "Login": newLogin._id
-                    }).then(res => res.json(dbModel))
-                    .catch(err => res.status(422).json(err));
+                    name: req.body.name,
+                    email: req.body.email,
+                    login: newLogin._id
+                })
+                res.send(userLogin);
             }
-        })
+        });
 
         // //this is the Mongoose Model where we actually create the user
         // db.User.create(req.body)
