@@ -1,7 +1,7 @@
 body {
   /* background-color: #ffffff; */
-  background-image: url("../images/4.jpg");
-  background-repeat: repeat;
+  background-image: url("../images/vigor-cover.jpg");
+  background-repeat: no-repeat;
   background-position: bottom;
   background-attachment: fixed;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -67,6 +67,30 @@ p {
 #calendar {
   min-width:320px;
   height:580px;
+}
+
+.cover-brand {
+  font-size: 30px;
+  color: #c1a115;
+  /* font-family: 'Give You Glory', cursive; */
+  font-family: 'Kanit', sans-serif;
+}
+.cover-heading {
+  padding: 40px;
+  font-size: 150px;
+  color: #c1a115;
+  font-family: 'Give You Glory', cursive;
+}
+.cover-text {
+  font-size: 20px;
+  color: black;
+  font-family: 'Playball', cursive;
+}
+
+.cover-div {
+  padding: 10%;
+  position: absolute;
+  margin:0 auto;
 }
 
 .card-inverse p {
