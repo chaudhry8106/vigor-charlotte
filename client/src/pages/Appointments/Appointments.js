@@ -189,8 +189,8 @@ state = {
             </div>
           </div>
         </section>
-        </main>
-      </Container>
+      </main>
+    </Container>
     );
   }
 }
