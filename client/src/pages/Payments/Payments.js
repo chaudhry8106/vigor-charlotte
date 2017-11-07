@@ -14,8 +14,8 @@ const handleSubmit = () => {
     
     paypal.configure({
         mode: 'sandbox', // Sandbox or live
-        client_id: 'Ac37b331jiGLND930-RDRgmeCmOEUWtYnNcNO7MA-rmdN2pFiIzdEwEsonM4uBANxCTrugcTCjIYj2-P',
-        client_secret: 'EGJHGSQ5UgQFIjJm6lPFUOtd0cxYxK71HphbcUeN1Q0KkztD8WNDvU0ohMwZKjh-dTayQM8xNiCc2jiw'});
+        client_id: '',
+        client_secret: ''});
 
     const card_data = {
         "type": "visa",
