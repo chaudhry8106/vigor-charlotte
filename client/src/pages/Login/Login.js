@@ -12,7 +12,10 @@ state = {
     lastName: "",
     userEmail: "",
     userPass: "",
-    passConfirm: ""
+    passConfirm: "",
+    userName: "",
+    userPW: "",
+    option: ""
   };
 
   handleInputChange = event => {
@@ -23,11 +26,21 @@ state = {
     this.setState({
       [name]: value
     });
+    console.log(name + ": " + value);
   };
 
-  handleFormSubmit = event => {
+  handleRegistration = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    //ensure all fields are completed
+    if(this.state.firstName === "" ||
+        this.state.lastName === ""||
+        this.state.userEmail === ""||
+        this.state.userPass === ""||
+        this.state.passConfirm === "") {
+            return alert("Please complete all fields");
+        }
+        //ensure passwords do match
     if (this.state.userPass !== this.state.passConfirm){
         return alert("Passwords do not match");
     } else {
@@ -37,10 +50,11 @@ state = {
             password: this.state.userPass
 
         }
+        //route to the server to add user to the database
         axios.post("/userSignup", user).then(res=>{
             console.log(res);
                 // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        alert(`Hello ${user.name}.  Welcome!`);
+        alert(`Hello ${user.name}.  Thank you for registering!  Please login.`);
             this.setState({
             firstName: "",
             lastName: "",
@@ -49,10 +63,48 @@ state = {
             passConfirm: ""
         });
         
-        }).catch(err=>console.log(err));     
-    } 
-    
+        }).catch(err=>console.log(err));
+         //redirect user to dashboard/main page.  This will load react component according to router in App.js within client/src folder 
+         this.props.history.push("/login");      
+    }
   };
+  
+  handleLogin = (event) => {
+      event.preventDefault();
+      if (this.state.userName === "" || this.state.userPW === ""){
+          return alert("Please Complete All Fields");
+      }
+      const userLogin = {
+          login_name: this.state.userName,
+          user_pass: this.state.userPW
+      }
+      console.log(userLogin);
+      //send username and password to server
+      axios.post("/userSignup/userCheck", userLogin)
+      .then(res=>{
+            console.log(res);
+            //reset form data
+            this.setState({
+          userName: "",
+          userPW: ""            
+        });
+        //returning email address if password is correct
+        //if res.data is an empty string, password was not correct
+        if(res.data === ""){
+            console.log("this");
+            alert("Incorrect Password");
+            this.props.history.push("/login");
+        } else {
+            //otherwise password is good and send user to main page
+            this.props.history.push({
+                pathname: "/dash",
+                //this is only good for the single route, email is lost while navigating through the nav
+            state: {email: res.data}
+            });
+        }
+        
+        }).catch(err=>console.log(err));
+  }
 
   render() {
     return (
@@ -75,30 +127,36 @@ state = {
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
                             </ul>
-                            <form action="/api/appointments/userLogin" method="post">
+                            <form>
                                 <div className="form-group row">
-                                    {/* <label for="inputEmailForm" className="sr-only control-label">Email</label> */}
+                                    <label for="inputEmailForm" className="sr-only control-label">Email</label>
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" 
                                         className="form-control" 
                                         id="inputEmailForm"
                                         placeholder="Email"
+                                        value={this.state.userName}
+                                        name="userName"
+                                        onChange={this.handleInputChange}
                                         required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     {/* <label for="inputPasswordForm" className="sr-only control-label">Password</label> */}
                                     <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" 
+                                        <input type="password" 
                                         className="form-control" 
                                         id="inputPasswordForm"
-                                        placeholder="Password" 
+                                        placeholder="Password"
+                                        value={this.state.userPW}
+                                        name="userPW"
+                                        onChange={this.handleInputChange}
                                         required="" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                        <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Sign-in</button>
+                                        <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block" onClick={this.handleLogin}>Sign-in</button>
                                     </div>
                                 </div>
                             </form>
@@ -114,18 +172,19 @@ state = {
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
                                 <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
                             </ul>
-                            <form action="/api/appointments/userSignup" method="post">
+                            <form>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8">
-                                        <select name="gender" class="form-control" type="" id="gender">
+                                        <select name="gender" className="form-control" type="" id="gender"
+                                        value={this.state.option} onChange={this.handleInputChange}>
                                             <option value="">Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                            <option value="genderM">Male</option>
+                                            <option value="genderF">Female</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    {<label for="input2FnameForm" className="sr-only control-label">First Name</label>}
+                                    <label for="input2FnameForm" className="sr-only control-label">First Name</label>
                                     <div className="offset-sm-2 col-sm-8">
                                         <input type="text" 
                                         className="form-control"
@@ -189,11 +248,10 @@ state = {
                                 </div>
                                 <div className="form-group row">
                                     <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                    <Link to ='/'>
                                         <button type="submit" 
                                         className="btn btn-primary btn-lg mt-2 btn-block"
-                                        onClick={this.handleFormSubmit}>Register</button>
-                                    </Link>
+                                        onClick={this.handleRegistration}>Register
+                                        </button>
                                     </div>
                                 </div>
                             </form>

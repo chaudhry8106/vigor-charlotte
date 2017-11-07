@@ -1,13 +1,12 @@
 const router = require("express").Router();
 const apptController = require("../../controllers/apptController");
 
+
 // Matches with "/api/appointments"
 router.route("/")
     .get(apptController.findAll)
     .post(apptController.create);
-//this route is '/api/appointments/userSignup'
-router.route("/userSignup")
-    .post(apptController.createUser);
+
 
 // Matches with "/api/appointment/:id"
 router.route("/:id")

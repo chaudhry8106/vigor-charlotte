@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Dash from "./pages/Dash";
 import Appointments from "./pages/Appointments";
 import Payments from "./pages/Payments";
@@ -10,6 +10,8 @@ import About from "./pages/About";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
+
+
 
 
 const App = () =>
@@ -27,5 +29,7 @@ const App = () =>
       </Switch>
     </div>
   </Router>;
+
+
   
 export default App;

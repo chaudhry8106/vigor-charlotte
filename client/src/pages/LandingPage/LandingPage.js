@@ -3,8 +3,6 @@ import { Route, Link, Redirect, withRouter } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import axios from "axios";
-
-
 class LandingPage extends Component {
 // Setting the component's initial state
 state = {
@@ -14,17 +12,14 @@ state = {
     userPass: "",
     passConfirm: ""
   };
-
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
-
     // Updating the input's state
     this.setState({
       [name]: value
     });
   };
-
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
@@ -35,7 +30,6 @@ state = {
             name: this.state.firstName + " " + this.state.lastName,
             email: this.state.userEmail,
             password: this.state.userPass
-
         }
         axios.post("/userSignup", user).then(res=>{
             console.log(res);
@@ -53,190 +47,16 @@ state = {
     } 
     
   };
-
   render() {
     return (
-    <Container>
-      {/* <nav class="navbar navbar-dark bg-primary"> */}
-        
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Hidden brand</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
-        
-      {/* </nav> */}
-      <Container fluid>
-        <div className="text-center">
-    
-        <br />
-        <br />
-        <br />
-        <div className="row" id="parent">
-            <div className="col-md-8 col-12 offset-sm-4 offset-lg-3 offset-xl-2 card d-block border-0 py-2">
-                <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardLogin" data-parent="#parent">Login</a>
-                <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardRegister" data-parent="#parent">Register</a>
-                <div className="collapse show py-2" id="cardLogin">
-                    <div className="card">
-                        <div className="card-block">
-                            <h2 className="text-xs-center">Login</h2>
-                            <ul className="list-inline text-center">
-                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Twitter"><i className="fa fa-2x fa-twitter"></i></a>&nbsp; </li>
-                                <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
-                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
-                            </ul>
-                            <form role="form">
-                                <div className="form-group row">
-                                    {/* <label for="inputEmailForm" className="sr-only control-label">Email</label> */}
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" 
-                                        className="form-control" 
-                                        id="inputEmailForm"
-                                        placeholder="Email"
-                                        required="" />
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    {/* <label for="inputPasswordForm" className="sr-only control-label">Password</label> */}
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" 
-                                        className="form-control" 
-                                        id="inputPasswordForm"
-                                        placeholder="Password" 
-                                        required="" />
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                        <button type="submit" className="btn btn-primary btn-lg mt-2 btn-block">Sign-in</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div className="collapse py-2" id="cardRegister">
-                    <div className="card">
-                        <div className="card-block">
-                            <h2 className="text-center">Register</h2>
-                            <ul className="list-inline text-center">
-                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Twitter"><i className="fa fa-2x fa-twitter"></i></a>&nbsp; </li>
-                                <li className="list-inline-item"><a className="btn btn-lg" href="" title=""><i className="fa fa-2x fa-google-plus"></i></a>&nbsp; </li>
-                                <li className="list-inline-item"><a className="btn btn-lg" href="" title="Facebook"><i className="fa fa-2x fa-facebook"></i></a></li>
-                            </ul>
-                            <form role="form" action="/api/appointments/userSignup" method="post">
-                                <div className="form-group row">
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <select name="gender" class="form-control" type="" id="gender">
-                                            <option value="">Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    {<label for="input2FnameForm" className="sr-only control-label">First Name</label>}
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" 
-                                        className="form-control"
-                                        value={this.state.firstName}
-                                        name="firstName"
-                                        onChange={this.handleInputChange} 
-                                        id="input2FnameForm" 
-                                        placeholder="First Name" 
-                                        required="" />
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    {<label for="input2LnameForm" className="sr-only control-label">Last Name</label>}
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" 
-                                        className="form-control"
-                                        value={this.state.lastName}
-                                        name="lastName"
-                                        onChange={this.handleInputChange}  
-                                        id="input2LnameForm" 
-                                        placeholder="Last Name" 
-                                        required="" />
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    {<label for="input2EmailForm" className="sr-only control-label">Email</label>}
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <input type="text" 
-                                        className="form-control"
-                                        value={this.state.userEmail}
-                                        name="userEmail"
-                                        onChange={this.handleInputChange}  
-                                        id="input2EmailForm" 
-                                        placeholder="Email" 
-                                        required="" />
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    {<label for="input2PasswordForm" className="sr-only control-label">Password</label>}
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <input type="password" 
-                                        className="form-control"
-                                        value={this.state.userPass}
-                                        name="userPass"
-                                        onChange={this.handleInputChange} 
-                                        id="input2PasswordForm" 
-                                        placeholder="Password" required="" />
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    {<label for="input2Password2Form" className="sr-only control-label">Verify</label>}
-                                    <div className="offset-sm-2 col-sm-8">
-                                        <input type="password" 
-                                        className="form-control"
-                                        value={this.state.passConfirm}
-                                        name="passConfirm"
-                                        onChange={this.handleInputChange}  
-                                        id="input2Password2Form" placeholder="Verify password" 
-                                        required="" />
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    <div className="offset-sm-2 col-sm-8 pb-3 pt-2">
-                                    <Link to ='/'>
-                                        <button type="submit" 
-                                        className="btn btn-primary btn-lg mt-2 btn-block"
-                                        onClick={this.handleFormSubmit}>Register</button>
-                                    </Link>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-      </Container>
-      </Container>
+  <Container fluid>
+    <div className="cover-div text-center">
+      <h3 className="cover-heading">Vigor</h3>
+      <p className="cover-text">Helping You Become Independent Of All Therapists, Including Ourselves</p>
+      <a href="login"><button className="btn btn-dark">Enter</button></a>
+    </div>
+  </Container>
     );
   }
 }
-
 export default LandingPage;
