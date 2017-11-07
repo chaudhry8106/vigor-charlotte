@@ -2,8 +2,8 @@ body {
   /* background-color: #ffffff; */
   background-image: url("../images/vigor-cover.jpg");
   background-repeat: no-repeat;
-  background-position: bottom;
-  background-attachment: fixed;
+  background-size: 1600px;
+  background-attachment: scroll;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   color: #444444; }
@@ -40,6 +40,10 @@ h3 {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.8rem;
   font-weight: 500; }
+
+.main {
+  opacity: .9;
+}
 
 h4 {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;

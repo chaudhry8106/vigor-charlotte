@@ -58,13 +58,15 @@ state = {
       <a class="navbar-brand cover-brand" href="#">Vigor</a>
     </div>
   </nav>
+
   <Container fluid>
-    <div className="text-center">
+    <div className="cover-div text-center">
       <h3 className="cover-heading">Vigor</h3>
-      <p className="cover-text">Helping You Become Independent Of All Therapist, Including Ourselves</p>
+      <p className="cover-text">Helping You Become Independent Of All Therapists, Including Ourselves</p>
+      <a href="login"><button className="btn btn-dark">Enter</button></a>
     </div>
   </Container>
-</div>
+  </div>
     );
   }
 }
