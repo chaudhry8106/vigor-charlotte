@@ -49,15 +49,6 @@ state = {
   };
   render() {
     return (
-<<<<<<< HEAD
-  <Container fluid>
-    <div className="cover-div text-center">
-      <h3 className="cover-heading">Vigor</h3>
-      <p className="cover-text">Helping You Become Independent Of All Therapist, Including Ourselves</p>
-      <a href="login"><button className="btn btn-dark">Enter</button></a>
-    </div>
-  </Container>
-=======
 <div>        
   <nav class="navbar navbar-expand-lg navbar-light bg-default">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +65,6 @@ state = {
     </div>
   </Container>
 </div>
->>>>>>> 31721a610a286829015aceaf8ddc4df6fa51cd6f
     );
   }
 }
