@@ -16,7 +16,10 @@ const userSchema = new Schema({
     login: [{
         type: Schema.Types.ObjectId,
         ref: "Login"
-    }]
+    }],
+    balance: {
+        type: Number
+    }
 });
 const User = mongoose.model("User", userSchema);
 

@@ -18,6 +18,8 @@ state = {
     option: ""
   };
 
+
+
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
@@ -53,7 +55,7 @@ state = {
         //route to the server to add user to the database
         axios.post("/userSignup", user).then(res=>{
             console.log(res);
-                // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+        // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
         alert(`Hello ${user.name}.  Thank you for registering!  Please login.`);
             this.setState({
             firstName: "",
@@ -88,9 +90,11 @@ state = {
           userName: "",
           userPW: ""            
         });
+        let result=res.data;
         //returning email address if password is correct
         //if res.data is an empty string, password was not correct
-        if(res.data === ""){
+        if(result.error){
+            Command: toastr["error"]("I forgot the e Tolsty", "War and Peac")
             console.log("this");
             alert("Incorrect Password");
             this.props.history.push("/login");
