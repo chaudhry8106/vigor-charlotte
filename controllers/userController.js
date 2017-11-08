@@ -55,24 +55,28 @@ module.exports = {
     checkLogin: function(req, res) {
         console.log(req.body);
         console.log(`This should be password: ${req.body.user_pass}`);
+        
         db.Login.findOne({
                 //finding user login from the database
                 login_name: req.body.login_name
             })
             .exec(function(err, entry) {
-
-                console.log(`User from DB: ${entry}
-                encrypted login: ${entry.login_pass}
-                salt: ${entry.salt}`);
-                //getting password and salt from table
-                let chkPassword = req.body.user_pass + entry.salt;
-                let pwToCheck = crypto.createHash("md5").update(chkPassword).digest("hex");
-                if (pwToCheck === entry.login_pass) {
-                    console.log("good login");
-                    res.json(req.body.login_name);
-                } else {
-                    console.log("no good");
-                    res.send(err);
+                if (err){
+                    res.json({"Error:  ": "No User Created"});
+                }else{
+                    console.log(`User from DB: ${entry}
+                    encrypted login: ${entry.login_pass}
+                    salt: ${entry.salt}`);
+                    //getting password and salt from table
+                    let chkPassword = req.body.user_pass + entry.salt;
+                    let pwToCheck = crypto.createHash("md5").update(chkPassword).digest("hex");
+                    if (pwToCheck === entry.login_pass) {
+                        console.log("good login");
+                        res.json(req.body.login_name);
+                    } else {
+                        console.log("no good");
+                        res.send(err);
+                    }
                 }
             })
             //.then(res => res.json(dbModel))
