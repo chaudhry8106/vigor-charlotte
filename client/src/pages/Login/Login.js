@@ -102,14 +102,8 @@ state = {
         let result=res.data;
         //returning email address if password is correct
         if(result.error){
-<<<<<<< HEAD
-            // Command: toastr["error"]("I forgot the e Tolsty", "War and Peac")
-            console.log("this");
-            alert("Incorrect Password");
-=======
             this.setState({ alertSnackbarMessage: result.error, alertSnackbarOpen: true, processed: true })
            // alert(result.error);
->>>>>>> master
             this.props.history.push("/login");
         } else {
             //otherwise password is good and send user to main page
