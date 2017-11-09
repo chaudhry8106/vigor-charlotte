@@ -16,13 +16,11 @@ module.exports = {
             login_pass: md5Pw,
             salt: salt
         });
-        console.log(newLogin);
         newLogin.save(function(err, userLogin) {
             console.log(err);
             if (err) {
                 res.send(err);
             } else {
-                console.log(req.body.name);
                 //this is the Mongoose Model where we actually create the user
                 db.User.create({
                     name: req.body.name,
@@ -35,28 +33,24 @@ module.exports = {
     },
     //check login to verify we have a good user, pass and username match
     checkLogin: function(req, res) {
-        console.log(req.body);
-        console.log(`This should be password: ${req.body.user_pass}`);
-        
         db.Login.findOne({
                 //finding user login from the database
                 login_name: req.body.login_name
             })
             .exec(function(err, entry) {
                 if (!entry){
-                    //
-                    console.log("no user-123");
+                    //if there is not user in the db
                     res.json({error: "No User Created"});
                 } else {
                     //getting password and salt from table
                     let chkPassword = req.body.user_pass + entry.salt;
                     let pwToCheck = crypto.createHash("md5").update(chkPassword).digest("hex");
                     if (pwToCheck === entry.login_pass) {
-                        console.log("good login");
+                        //if password is correct return user data
                         res.json(req.body.login_name);
                     } else {
-                        console.log("no good");
-                        res.send(err);
+                        //if user password does not match
+                        res.json({error: "Invalid Password"});
                     }
                 }
             })
