@@ -94,7 +94,7 @@ state = {
         //returning email address if password is correct
         //if res.data is an empty string, password was not correct
         if(result.error){
-            Command: toastr["error"]("I forgot the e Tolsty", "War and Peac")
+            // Command: toastr["error"]("I forgot the e Tolsty", "War and Peac")
             console.log("this");
             alert("Incorrect Password");
             this.props.history.push("/login");

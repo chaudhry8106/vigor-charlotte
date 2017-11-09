@@ -62,39 +62,6 @@ class Payments extends Component {
             <Header>
                 <h1 className="float-left text-center text-md-left">Payments</h1>
             </Header>
-            {/* <section>
-                <div id="sq-ccbox">
-                    <form id="nonce-form" novalidate action="path/to/payment/processing/page" method="post">
-                        Pay with a Credit Card
-                        <table>
-                            <tbody>
-                                <tr>
-                                <td>Card Number:</td>
-                                <td><div id="sq-card-number"></div></td>
-                                </tr>
-                                <tr>
-                                <td>CVV:</td>
-                                <td><div id="sq-cvv"></div></td>
-                                </tr>
-                                <tr>
-                                <td>Expiration Date: </td>
-                                <td><div id="sq-expiration-date"></div></td>
-                                </tr>
-                                <tr>
-                                <td>Postal Code:</td>
-                                <td><div id="sq-postal-code"></div></td>
-                                </tr>
-                                <tr>
-                                <td colspan="2">
-                                    <button id="sq-creditcard" className="button-credit-card" onclick="requestCardNonce(event)">Pay with card</button>
-                                </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <input type="hidden" id="card-nonce" name="nonce" />
-                    </form>
-                </div>
-            </section> */}
             <section>
                 <div id="pay-invoice" className="card">
                     <div className="card-body">
@@ -160,6 +127,28 @@ class Payments extends Component {
                         </form>
                     </div>
                 </div>
+            </section>
+            <br />
+            <section>
+                <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick" />
+                    <input type="hidden" name="hosted_button_id" value="19218" />
+                    <table>
+                        <tr><td><input type="hidden" name="on0" value="Color" />Color</td></tr><tr><td><select name="os0">
+                        <option value="Red">Red $10.00</option>
+                        <option value="Blue">Blue $8.00</option>
+                        <option value="Green">Green $12.00</option>
+                    </select> </td></tr>
+                    <tr><td><input type="hidden" name="on1" value="Size" />Size</td></tr><tr><td><select name="os1">
+                    <option value="Small">Small</option>
+                    <option value="Large">Large</option>
+                    </select> </td></tr>
+                    </table>
+                    <br />
+                    <input type="hidden" name="currency_code" value="USD" />
+                    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_addtocart_120x26.png" alt="Add to Cart" name="submit" />
+                    <img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                </form>
             </section>
         </main>
     </Container>
