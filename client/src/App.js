@@ -11,9 +11,6 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 
-
-
-
 const App = () =>
   <Router>
     <div>
