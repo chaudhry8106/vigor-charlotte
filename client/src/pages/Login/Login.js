@@ -3,6 +3,12 @@ import { Route, Link, Redirect, withRouter } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
 import axios from "axios";
+import { ToastContainer } from "react-toastr";
+import { ToastMessageAnimated } from "react-toastr";
+import SnackBar from 'material-ui/Snackbar'
+import FlatButton from 'material-ui/FlatButton'
+import Dialog from 'material-ui/Dialog'
+let container;
 
 
 class Login extends Component {
@@ -15,7 +21,9 @@ state = {
     passConfirm: "",
     userName: "",
     userPW: "",
-    option: ""
+    option: "",
+    alertSnackBarOpen: false,
+    confirmationModalOpen: false
   };
 
   handleInputChange = event => {
@@ -38,11 +46,11 @@ state = {
         this.state.userEmail === ""||
         this.state.userPass === ""||
         this.state.passConfirm === "") {
-            return alert("Please complete all fields");
+            return this.setState({ alertSnackbarMessage: "Please Complete All Fields", alertSnackbarOpen: true, processed: true })
         }
         //ensure passwords do match
     if (this.state.userPass !== this.state.passConfirm){
-        return alert("Passwords do not match");
+        return this.setState({ alertSnackbarMessage: "Passwords do not match", alertSnackbarOpen: true, processed: true })
     } else {
         const user = {
             name: this.state.firstName + " " + this.state.lastName,
@@ -53,8 +61,8 @@ state = {
         //route to the server to add user to the database
         axios.post("/userSignup", user).then(res=>{
             console.log(res);
-                // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        alert(`Hello ${user.name}.  Thank you for registering!  Please login.`);
+            this.setState({ confirmationModalOpen: !this.state.confirmationModalOpen });
+        // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
             this.setState({
             firstName: "",
             lastName: "",
@@ -68,17 +76,20 @@ state = {
          this.props.history.push("/login");      
     }
   };
+  validateEmail(email) {
+    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    return regex.test(email) ? this.setState({ email: email, validEmail: true }) : this.setState({ validEmail: false })
+  }
   
   handleLogin = (event) => {
       event.preventDefault();
       if (this.state.userName === "" || this.state.userPW === ""){
-          return alert("Please Complete All Fields");
+        return this.setState({ alertSnackbarMessage: "Please Complete All Fields", alertSnackbarOpen: true, processed: true })
       }
       const userLogin = {
           login_name: this.state.userName,
           user_pass: this.state.userPW
       }
-      console.log(userLogin);
       //send username and password to server
       axios.post("/userSignup/userCheck", userLogin)
       .then(res=>{
@@ -88,11 +99,11 @@ state = {
           userName: "",
           userPW: ""            
         });
+        let result=res.data;
         //returning email address if password is correct
-        //if res.data is an empty string, password was not correct
-        if(res.data === ""){
-            console.log("this");
-            alert("Incorrect Password");
+        if(result.error){
+            this.setState({ alertSnackbarMessage: result.error, alertSnackbarOpen: true, processed: true })
+           // alert(result.error);
             this.props.history.push("/login");
         } else {
             //otherwise password is good and send user to main page
@@ -107,10 +118,18 @@ state = {
   }
 
   render() {
+      //preparing modal actions
+    const modalActions = [
+        <FlatButton
+          label="Confirm"
+          primary={false}
+          onClick={() => this.setState({ confirmationModalOpen : false})} />,
+      ]
+
     return (
       <Container fluid>
         <div className="text-center">
-    
+     
         <br />
         <br />
         <br />
@@ -255,12 +274,25 @@ state = {
                                     </div>
                                 </div>
                             </form>
+                           
                         </div>
                     </div>
                 </div>
+                <Dialog
+                modal={true}
+                open={this.state.confirmationModalOpen}
+                actions={modalActions}
+                title="Thank you for registering, please login.">
+                
+                </Dialog>
+
+                <SnackBar
+                open={this.state.alertSnackbarOpen}
+                message={this.state.alertSnackbarMessage || ''}
+                autoHideDuration={10000}
+                onRequestClose={() => this.setState({ alertSnackbarOpen: false })} />
             </div>
         </div>
-
         </div>
       </Container>
     );
