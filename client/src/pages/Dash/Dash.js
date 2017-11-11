@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import { Container } from "../../components/Grid";
 import axios from "axios";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
@@ -69,10 +67,10 @@ componentWillMount(){
                   <h1 className="mb-4">{`Hello ${this.state.userName}`}</h1>
                   <p className="quote">{`"${this.state.quote}"`}</p>
                   <p className="author">{`---${this.state.author}`}</p>
-                  <p className="lead"><a className="btn btn-primary btn-lg mt-2" href="#" role="button">Personal Training</a></p>
-                  <p className="lead"><a className="btn btn-primary btn-lg mt-2" href="#" role="button">Cardio Training</a></p>
-                  <p className="lead"><a className="btn btn-primary btn-lg mt-2" href="#" role="button">Movement Education</a></p>
-                  <p className="lead"><a className="btn btn-primary btn-lg mt-2" href="#" role="button">Clinical Bodywork</a></p>
+                  <p className="lead"><a className="btn btn-primary btn-lg mt-2"  role="button">Personal Training</a></p>
+                  <p className="lead"><a className="btn btn-primary btn-lg mt-2"  role="button">Cardio Training</a></p>
+                  <p className="lead"><a className="btn btn-primary btn-lg mt-2"  role="button">Movement Education</a></p>
+                  <p className="lead"><a className="btn btn-primary btn-lg mt-2"  role="button">Clinical Bodywork</a></p>
                   <span style={{zIndex:"50", fontSize:"0.9em"}}><img src="https://theysaidso.com/branding/theysaidso.png" 
                   height={"20"} width={"20"} alt={"theysaidso.com"}/><a href="https://theysaidso.com" target="_blank" 
                   title="Powered by quotes from theysaidso.com" 
