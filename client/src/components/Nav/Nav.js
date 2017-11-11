@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Link, Redirect, withRouter } from "react-router-dom";
 
 
+
 class Nav extends Component {
 
 render() {
@@ -10,7 +11,7 @@ render() {
   <nav className="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2 bg-faded sidebar-style-1">
     <h1 className="site-title"><a href="/about"><em className="logo" ></em> Vigor</a></h1>
 
-    <a href="#menu-toggle" className="btn btn-default" id="menu-toggle"><em className="fa fa-bars"></em></a>
+    <a href="#menu-toggle" className="btn btn-default " id="menu-toggle"><em className="fa fa-bars"></em></a>
 
     <ul className="nav nav-pills flex-column sidebar-nav">
       <li className="nav-item"><a className="nav-link active" href="/dash"><em className="fa fa-dashboard"></em> Dashboard <span className="sr-only">(current)</span></a></li>

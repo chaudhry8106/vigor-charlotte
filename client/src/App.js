@@ -13,23 +13,16 @@ import Header from "./components/Header";
 
 class App extends Component {
 
-  state = {
-    email: ""
-  }
-
-handleNewUser(email){
-  this.setState({email});
-};
 render() {
-  const email = this.state.email;
+ 
 return (
 <div>
   <Router>
     <div>
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        {<Route exact path="/login" component={Login} email = {email} emailAdd={this.handleNewUser} />}
-        {<Route exact path="/dash" component={Dash} email = {email} emailAdd={this.handleNewUser} />}
+        {<Route exact path="/login" component={Login} />}
+        {<Route exact path="/dash" component={Dash} />}
         {<Route exact path="/appointments" component={Appointments} />}
         {<Route exact path="/payments" component={Payments} />}
         {<Route exact path="/about" component={About} />}
