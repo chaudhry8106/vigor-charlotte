@@ -1,6 +1,6 @@
 //Variables
-$primary-color: #7376df;
-$primary-color-hover: #6365d2;
+$primary-color: #c0a136;
+$primary-color-hover: #444444;
 $almost-white: #f7f7f7;
 $lighter-gray: #dfdfdf;
 $light-gray: #a0a0a0;
@@ -38,7 +38,7 @@ a, a:visited {
 }
 
 a:hover, a:focus, a:active {
-	color: $primary-color-hover;
+	color: $primary-color;
 	text-decoration: none;
 }
 
@@ -159,7 +159,7 @@ p {
 }
 
 .btn-link:focus, .btn-link:hover, .page-link:focus, .page-link:hover, a.text-primary:focus, a.text-primary:hover {
-	color: $primary-color-hover!important;
+	color: $primary-color!important;
 }
 
 .dropdown-item.active, .dropdown-item:active, .custom-control-input:checked ~ .custom-control-indicator, .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-indicator, .nav-pills .nav-item.show .nav-link, .badge-primary, .progress-bar, .bg-primary {
@@ -168,7 +168,7 @@ p {
 }
 
 .nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover, a.bg-primary:focus, a.bg-primary:hover {
-	background-color: $primary-color-hover!important;
+	background-color: $primary-color!important;
 }
 
 .form-control:focus {
@@ -185,8 +185,8 @@ p {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-	background-color: $primary-color-hover;
-	border-color: $primary-color-hover;
+	background-color: $primary-color;
+	border-color: $primary-color;
 }
 
 .btn-outline-primary, .btn-outline-primary:visited {
