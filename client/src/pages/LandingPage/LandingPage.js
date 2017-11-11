@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Route, Link, Redirect, withRouter } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import { Link } from "react-router-dom";
+import { Container } from "../../components/Grid";
+
 import axios from "axios";
 
 
@@ -9,7 +9,7 @@ class LandingPage extends Component {
 
 componentWillMount= () => {
  console.log("handlemefooo")
-  //send username and password to server
+  //this post call is used to logout user and delete cookie
   axios.post("/userSignup/logout")
   .then(res=>{
     console.log(res);
@@ -28,7 +28,7 @@ componentWillMount= () => {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <Link to = "/about"><a className="navbar-brand cover-brand" href="#">Vigor</a></Link>
+      <Link to = "/about"><a className="navbar-brand cover-brand">Vigor</a></Link>
     </div>
   </nav>
 
