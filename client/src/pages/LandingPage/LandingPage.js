@@ -9,7 +9,7 @@ class LandingPage extends Component {
 
 componentWillMount= () => {
  console.log("handlemefooo")
-  //send username and password to server
+  //this post call is used to logout user and delete cookie
   axios.post("/userSignup/logout")
   .then(res=>{
     console.log(res);
