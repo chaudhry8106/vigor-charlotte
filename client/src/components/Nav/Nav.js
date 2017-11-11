@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Link, Redirect, withRouter } from "react-router-dom";
 
-const Nav = () =>
+
+class Nav extends Component {
+
+render() {
+  return (
+    <div>
   <nav className="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2 bg-faded sidebar-style-1">
     <h1 className="site-title"><a href="/about"><em className="logo" ></em> Vigor</a></h1>
 
@@ -15,7 +20,9 @@ const Nav = () =>
       <li className="nav-item"><a className="nav-link" href="/contact"><em className="fa fa-globe"></em> Contact Us</a></li>
     </ul>
 
-    <Link to="/" className="logout-button"><em className="fa fa-power-off"></em> Signout</Link>
-  </nav>;
-
+   <Link to= "/"><a href="#" className="logout-button" ><em className="fa fa-power-off"></em> Signout</a></Link>
+  </nav>
+  </div>
+  )}
+}
 export default Nav;

@@ -9,6 +9,8 @@ router.route("/userCheck")
     .post(userController.checkLogin);
 router.route("/getUser")
     .post(userController.getUser);
+    router.route("/logout")
+    .post(userController.logout);
 
 
 module.exports = router;

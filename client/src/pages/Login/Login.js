@@ -12,6 +12,7 @@ let container;
 
 
 class Login extends Component {
+
 // Setting the component's initial state
 state = {
     firstName: "",
@@ -29,12 +30,11 @@ state = {
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
-
     // Updating the input's state
     this.setState({
       [name]: value
     });
-    console.log(name + ": " + value);
+   
   };
 
   handleRegistration = event => {
@@ -100,18 +100,21 @@ state = {
           userPW: ""            
         });
         let result=res.data;
-        //returning email address if password is correct
+       
         if(result.error){
+             //alert user password is incorrect 
             this.setState({ alertSnackbarMessage: result.error, alertSnackbarOpen: true, processed: true })
-           // alert(result.error);
+            //direct user back to login;
             this.props.history.push("/login");
         } else {
+            
             //otherwise password is good and send user to main page
             this.props.history.push({
                 pathname: "/dash",
                 //this is only good for the single route, email is lost while navigating through the nav
             state: {email: res.data}
             });
+           
         }
         
         }).catch(err=>console.log(err));
@@ -193,14 +196,14 @@ state = {
                             </ul>
                             <form>
                                 <div className="form-group row">
-                                    <div className="offset-sm-2 col-sm-8">
+                                    {/* <div className="offset-sm-2 col-sm-8">
                                         <select name="gender" className="form-control" type="" id="gender"
                                         value={this.state.option} onChange={this.handleInputChange}>
                                             <option value="">Select Gender</option>
                                             <option value="genderM">Male</option>
                                             <option value="genderF">Female</option>
                                         </select>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="form-group row">
                                     <label for="input2FnameForm" className="sr-only control-label">First Name</label>

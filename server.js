@@ -1,5 +1,5 @@
 const express = require("express");
-const session = require("express-session");
+const session = require("express-sessions");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
@@ -13,24 +13,11 @@ mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://heroku_rmjbbdq5:3j77ablg5a4b25cgv0vtog061b@ds147265.mlab.com:47265/heroku_rmjbbdq5", {
+        //localhost/vigor", {
+
         useMongoClient: true
     }
 );
-
-app.use(session({
-    secret: 'boo'
-}));
-//     cookie: { maxAge: 2628000000 },
-//     store: new(require('express-sessions'))({
-//     //     storage: 'mongodb',
-//     //     instance: mongoose, // optional 
-//     //     host: 'localhost', // optional 
-//     //     port: 27017, // optional 
-//     //     db: 'test', // optional 
-//     //     collection: 'sessions', // optional 
-//     //     expire: 86400 // optional 
-//     // })
-// }));
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));

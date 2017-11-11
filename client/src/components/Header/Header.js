@@ -10,7 +10,7 @@ const Header = ({children}) =>
       <a className="btn btn-stripped dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="images/profile-pic.jpg" alt="profile photo" className="circle float-left profile-photo" width="50" height="auto"></img>
         <div className="username mt-1">
-          <h4 className="mb-1">{...props.userName}</h4>
+          <h4 className="mb-1"></h4>
           <h6 className="text-muted"></h6>
 				</div>
         <div className="dropdown-menu dropdown-menu-right" style={{marginRight: 1.5 + 'em'}} aria-labelledby="dropdownMenuLink">

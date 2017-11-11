@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Dash from "./pages/Dash";
 import Appointments from "./pages/Appointments";
@@ -11,13 +11,25 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 
-const App = () =>
+class App extends Component {
+
+  state = {
+    email: ""
+  }
+
+handleNewUser(email){
+  this.setState({email});
+};
+render() {
+  const email = this.state.email;
+return (
+<div>
   <Router>
     <div>
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        {<Route exact path="/login" component={Login} />}
-        {<Route exact path="/dash" component={Dash} />}
+        {<Route exact path="/login" component={Login} email = {email} emailAdd={this.handleNewUser} />}
+        {<Route exact path="/dash" component={Dash} email = {email} emailAdd={this.handleNewUser} />}
         {<Route exact path="/appointments" component={Appointments} />}
         {<Route exact path="/payments" component={Payments} />}
         {<Route exact path="/about" component={About} />}
@@ -26,7 +38,9 @@ const App = () =>
       </Switch>
     </div>
   </Router>;
-
+  </div>
+)}
+}
 
   
 export default App;

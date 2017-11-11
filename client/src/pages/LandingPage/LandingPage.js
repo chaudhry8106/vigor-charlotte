@@ -4,6 +4,21 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import axios from "axios";
 class LandingPage extends Component {
+
+  
+componentWillMount= () => {
+ console.log("handlemefooo")
+  //send username and password to server
+  axios.post("/userSignup/logout")
+  .then(res=>{
+    console.log(res);
+    let result=res.data;
+    //logout 
+    console.log(result.success)
+    this.props.history.push("/");    
+    }).catch(err=>console.log(err));
+};
+
   render() {
     return (
 <div>        

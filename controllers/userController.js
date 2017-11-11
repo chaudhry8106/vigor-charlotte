@@ -33,6 +33,7 @@ module.exports = {
     },
     //check login to verify we have a good user, pass and username match
     checkLogin: function(req, res) {
+        
         db.Login.findOne({
                 //finding user login from the database
                 login_name: req.body.login_name
@@ -46,7 +47,8 @@ module.exports = {
                     let chkPassword = req.body.user_pass + entry.salt;
                     let pwToCheck = crypto.createHash("md5").update(chkPassword).digest("hex");
                     if (pwToCheck === entry.login_pass) {
-                        //if password is correct return user data
+                        //if password is correct return user data and create cookie for session
+                        res.cookie('user', entry.login_name);
                         res.json(req.body.login_name);
                     } else {
                         //if user password does not match
@@ -67,5 +69,10 @@ module.exports = {
             }
 
         })
+    },
+    logout: function(req,res){
+        res.clearCookie('user', "234dflkgq94rtdfgker23094djfflk");
+        res.json({success: "Logout Successful"});
+
     }
 }

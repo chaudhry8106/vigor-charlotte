@@ -12,6 +12,9 @@ const loginSchema = new Schema({
     },
     salt: {
         type: String,
+    },
+    session: {
+        type: String
     }
 });
 const Login = mongoose.model("Login", loginSchema);
