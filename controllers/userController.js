@@ -9,7 +9,7 @@ module.exports = {
         var salt = "540987gf09df8ksjf5870gsd"
         var data = req.body.password + salt;
         var md5Pw = crypto.createHash('md5').update(data).digest("hex");
-        
+
         //creating a new login object referencing the Login model
         let newLogin = new Login({
             login_name: req.body.email,
@@ -33,26 +33,26 @@ module.exports = {
     },
     //check login to verify we have a good user, pass and username match
     checkLogin: function(req, res) {
-        
+
         db.Login.findOne({
                 //finding user login from the database
                 login_name: req.body.login_name
             })
             .exec(function(err, entry) {
-                if (!entry){
+                if (!entry) {
                     //if there is not user in the db
-                    res.json({error: "No User Created"});
+                    res.json({ error: "No User Created" });
                 } else {
                     //getting password and salt from table
                     let chkPassword = req.body.user_pass + entry.salt;
                     let pwToCheck = crypto.createHash("md5").update(chkPassword).digest("hex");
                     if (pwToCheck === entry.login_pass) {
                         //if password is correct return user data and create cookie for session
-                        res.cookie('user', entry.login_name);
+                        res.cookie('user', entry);
                         res.json(req.body.login_name);
                     } else {
                         //if user password does not match
-                        res.json({error: "Invalid Password"});
+                        res.json({ error: "Invalid Password" });
                     }
                 }
             })
@@ -70,9 +70,9 @@ module.exports = {
 
         })
     },
-    logout: function(req,res){
+    logout: function(req, res) {
         res.clearCookie('user', "234dflkgq94rtdfgker23094djfflk");
-        res.json({success: "Logout Successful"});
+        res.json({ success: "Logout Successful" });
 
     }
 }
