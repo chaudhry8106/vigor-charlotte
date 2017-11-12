@@ -61,7 +61,7 @@ state = {
         }
         //route to the server to add user to the database
         axios.post("/userSignup", user).then(res=>{
-            console.log(res);
+           
             this.setState({ confirmationModalOpen: !this.state.confirmationModalOpen });
         // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
             this.setState({
@@ -94,7 +94,6 @@ state = {
       //send username and password to server
       axios.post("/userSignup/userCheck", userLogin)
       .then(res=>{
-            console.log(res);
             //reset form data
             this.setState({
           userName: "",

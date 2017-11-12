@@ -32,7 +32,6 @@ componentWillMount(){
   axios.get('https://quotes.rest/qod.json')
     .then(response => {
       let createQuote = response.data.contents.quotes[0];
-      console.log(createQuote);
       this.setState({quote: createQuote.quote, author: createQuote.author})
       })
     .catch(err => {console.log(err)});
@@ -41,7 +40,6 @@ componentWillMount(){
   axios.get("/userSignup")
   .then(response =>
   {
-    console.log(response);
   })
   .catch(err=>console.log(err));
 }

@@ -14,7 +14,6 @@ componentWillMount= () => {
   .then(res=>{;
     let result=res.data;
     //logout 
-    console.log(result.success)
     this.props.history.push("/");    
     }).catch(err=>console.log(err));
 };
