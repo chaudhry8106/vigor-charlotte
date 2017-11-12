@@ -12,7 +12,7 @@ render() {
     <h1 className="site-title"><a href="/about"><em className="logo" ></em> Vigor</a></h1>
 
     <a href="#menu-toggle" className="btn btn-default " id="menu-toggle"><em className="fa fa-bars"></em></a>
-
+    
     <ul className="nav nav-pills flex-column sidebar-nav">
       <li className="nav-item"><a className="nav-link active" href="/dash"><em className="fa fa-dashboard"></em> Dashboard <span className="sr-only">(current)</span></a></li>
       <li className="nav-item"><a className="nav-link" href="/appointments"><em className="fa fa-calendar-o"></em> Appointments</a></li>
@@ -21,7 +21,7 @@ render() {
       <li className="nav-item"><a className="nav-link" href="/contact"><em className="fa fa-globe"></em> Contact Us</a></li>
     </ul>
 
-   <Link to= "/"><a href="#" className="logout-button" ><em className="fa fa-power-off"></em> Signout</a></Link>
+   <a href="/" className="logout-button" ><em className="fa fa-power-off"></em> Signout</a>
   </nav>
   </div>
   )}

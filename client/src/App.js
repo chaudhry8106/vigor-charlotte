@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import NoMatch from "./pages/NoMatch";
+import Nav from "./components/Nav";
 
 
 
@@ -17,6 +18,7 @@ render() {
  
 return (
 <div>
+  <Nav />
   <Router>
     <div>
       <Switch>
@@ -30,7 +32,7 @@ return (
         {<Route component={NoMatch} />}
       </Switch>
     </div>
-  </Router>;
+  </Router>
   </div>
 )}
 }

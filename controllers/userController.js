@@ -49,7 +49,7 @@ module.exports = {
                     if (pwToCheck === entry.login_pass) {
                         //if password is correct return user data and create cookie for session
                         res.cookie('user', entry);
-                        res.json(req.body.login_name);
+                        res.json(entry._id);
                     } else {
                         //if user password does not match
                         res.json({ error: "Invalid Password" });
@@ -71,7 +71,7 @@ module.exports = {
         })
     },
     logout: function(req, res) {
-        res.clearCookie('user', "234dflkgq94rtdfgker23094djfflk");
+        res.clearCookie('user');
         res.json({ success: "Logout Successful" });
 
     }

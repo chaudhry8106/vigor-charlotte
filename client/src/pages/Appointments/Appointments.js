@@ -120,7 +120,6 @@ state = {
                     
               <h4>Select a Start Time (Between 9am and 5pm):</h4>
               <TimePicker 
-              minutesStep={60}
               onChange={(evt, newValue) => 
               {
                 console.log(moment(newValue).format("LT"));

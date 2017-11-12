@@ -7,7 +7,8 @@ import { ToastContainer } from "react-toastr";
 import { ToastMessageAnimated } from "react-toastr";
 import SnackBar from 'material-ui/Snackbar'
 import FlatButton from 'material-ui/FlatButton'
-import Dialog from 'material-ui/Dialog'
+import Dialog from 'material-ui/Dialog';
+import Nav from "../../components/Nav";
 let container;
 
 
@@ -107,7 +108,7 @@ state = {
             //direct user back to login;
             this.props.history.push("/login");
         } else {
-            
+            <Nav email= {this.state.email}/>
             //otherwise password is good and send user to main page
             this.props.history.push({
                 pathname: "/dash",

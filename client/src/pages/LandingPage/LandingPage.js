@@ -8,11 +8,10 @@ import axios from "axios";
 class LandingPage extends Component {
 
 componentWillMount= () => {
- console.log("handlemefooo")
+
   //this post call is used to logout user and delete cookie
   axios.post("/userSignup/logout")
-  .then(res=>{
-    console.log(res);
+  .then(res=>{;
     let result=res.data;
     //logout 
     console.log(result.success)
