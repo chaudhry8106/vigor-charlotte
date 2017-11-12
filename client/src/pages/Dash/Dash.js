@@ -49,7 +49,7 @@ componentWillMount(){
   render() {
     return (
       <Container fluid>
-        {/* <Nav /> */}
+        <Nav />
         <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
         <Header>
           <h1 className="float-left text-center text-md-left">Dashboard</h1>
@@ -62,6 +62,10 @@ componentWillMount(){
                   <h1 className="mb-4">{`Hello ${this.state.userName}`}</h1>
                   <p className="quote">{`"${this.state.quote}"`}</p>
                   <p className="author">{`---${this.state.author}`}</p>
+                  <span style={{zIndex:"50", fontSize:"0.9em"}}><img src="https://theysaidso.com/branding/theysaidso.png" 
+                    height={"20"} width={"20"} alt={"theysaidso.com"}/><a href="https://theysaidso.com" target="_blank" 
+                    title="Powered by quotes from theysaidso.com" 
+                    style={{color: "#9fcc25", marginLeft: "4px", verticalAlign:"middle"}}>theysaidso.com</a></span>
 
 
 
@@ -109,10 +113,7 @@ componentWillMount(){
             </div>  
         </div>  
 
-        <span style={{zIndex:"50", fontSize:"0.9em"}}><img src="https://theysaidso.com/branding/theysaidso.png" 
-        height={"20"} width={"20"} alt={"theysaidso.com"}/><a href="https://theysaidso.com" target="_blank" 
-        title="Powered by quotes from theysaidso.com" 
-        style={{color: "#9fcc25", marginLeft: "4px", verticalAlign:"middle"}}>theysaidso.com</a></span>                 
+                        
       
         </div>
               </div>

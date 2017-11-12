@@ -18,7 +18,6 @@ render() {
  
 return (
 <div>
-  <Nav />
   <Router>
     <div>
       <Switch>
