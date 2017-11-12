@@ -12,8 +12,8 @@ const router = require("express").Router();
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/vigor", {
-        //heroku_rmjbbdq5:3j77ablg5a4b25cgv0vtog061b@ds147265.mlab.com:47265/heroku_rmjbbdq5", {
+    process.env.MONGODB_URI || "mongodb://heroku_rmjbbdq5:3j77ablg5a4b25cgv0vtog061b@ds147265.mlab.com:47265/heroku_rmjbbdq5", {
+        //localhost/vigor", {
         useMongoClient: true
     }
 );
