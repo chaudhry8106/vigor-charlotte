@@ -5,11 +5,63 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
+import FlatButton from 'material-ui/FlatButton'
+import Dialog from 'material-ui/Dialog'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios'
 
 class Contact extends Component {
+  state = {
+    appointments: [],
+    confirmationModalOpen: false,
+    validEmail: false,
+    validMessage: false,
+    name:"",
+    email: "",
+    message: "",
+    confirmationModalOpen: false,
+    confirmationSnackbarOpen: false
+  }
+  handleContactRequest =() =>{
+  const requestObj = {
+    name: this.state.name,
+    email: this.state.email,
+    message: this.state.message
+  };
+  axios.post("/api/contactRequest", requestObj)
+  .then(res => {
+    
+    this.setState({ confirmationModalOpen: !this.state.confirmationModalOpen})
+    this.setState({name: "", email: "", message: ""})
+    console.log(res)
+  })
+  .catch(err=>console.log(err));
+ 
+  }
 
+  validateEmail(email) {
+    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    return regex.test(email) ? this.setState({ email: email, validEmail: true }) : this.setState({ validEmail: false })
+  }
+
+  validateMessage(Message) {
+    
+    return Message.length > 0 ? this.setState({ message: Message, validMessage: true }) : this.setState({ validMessage: false })
+  }
 
   render() {
+    
+    const contactFormFilled = this.state.name && this.state.email && this.state.message
+    && this.state.validEmail && this.state.validMessage
+  
+    const modalActions = [
+      <FlatButton
+        label="Dismiss"
+        primary={true}
+        onClick={() => this.setState({ confirmationModalOpen : false})}
+        />
+    ]
     return (
       <Container fluid>
         <Nav />
@@ -61,43 +113,51 @@ class Contact extends Component {
                     
                     <h6 className="card-subtitle mb-2 text-muted">We are ready to answer all of your questions</h6>
                     
-                    <form className="form-horizontal" action="/contact" method="post">
+                    <form className="form-horizontal">
                       <fieldset>
                   
-                        <div className="form-group">
-                          <label className="col-12 control-label no-padding" for="name">Name</label>
-                          
-                          <div className="col-12 no-padding">
-                            <input id="name" name="name" type="text" placeholder="Your name" className="form-control"></input>
-                          </div>
-                        </div>
+                      <TextField
+                      style={{ display: 'block' }}
+                      name="name"
+                      hintText="Name"
+                      floatingLabelText="Name"
+                      onChange={(evt, newValue) => this.setState({ name: newValue })}/>
                       
-                        
-                        <div className="form-group">
-                          <label className="col-12 control-label no-padding" for="email">Your E-mail</label>
-                          
-                          <div className="col-12 no-padding">
-                            <input id="email" name="email" type="text" placeholder="Your email" className="form-control"></input>
-                          </div>
-                        </div>
-                        
-                    
-                        <div className="form-group">
-                          <label className="col-12 control-label no-padding" for="message">Your message</label>
-                          
-                          <div className="col-12 no-padding">
-                            <textarea className="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
-                          </div>
-                        </div>
-                        
-                
-                        <div className="form-group">
-                          <div className="col-12 widget-right no-padding">
-                            <button type="submit" className="btn btn-primary btn-md float-right">Submit</button>
-                          </div>
-                        </div>
+                      <TextField
+                      style={{ display: 'block' }}
+                      name="email"
+                      hintText="name@mail.com"
+                      floatingLabelText="Email"
+                      errorText={this.state.validEmail ? null : 'Enter a valid email address'}
+                      onChange={(evt, newValue) => this.validateEmail(newValue)}/>
+
+                      <TextField
+                      style={{ display: 'block' }}
+                      name="message"
+                      multiLine= "true"
+                      rows = "3"
+                      hintText="Let us know how we can help"
+                      floatingLabelText="Message"
+                      errorText={this.state.validMessage ? null: 'Please fill out'}
+                      onChange={(evt, newValue) => this.validateMessage(newValue)}
+                      />
+
+                      <RaisedButton
+                      backgroundColor="#c0a136"
+                      label={contactFormFilled ? 'Contact Us' : 'Fill out your information'}
+                      disabled={!contactFormFilled}
+                      onClick={this.handleContactRequest}
+                      style= {{ marginTop: '25px',
+                      float: 'right'}}
+                      labelColor="#fff"/>
                       </fieldset>
                     </form>
+                    <Dialog
+                    modal={true}
+                    open={this.state.confirmationModalOpen}
+                    actions={modalActions}
+                    title="Thank you for reaching out!">
+                   </Dialog>
                   </div>
                 </div>
 

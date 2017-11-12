@@ -17,7 +17,6 @@ module.exports = {
             salt: salt
         });
         newLogin.save(function(err, userLogin) {
-            console.log(err);
             if (err) {
                 res.send(err);
             } else {
