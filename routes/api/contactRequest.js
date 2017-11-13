@@ -6,4 +6,8 @@ const contactRequestController = require("../../controllers/contactRequestContro
 router.route("/")
     .post(contactRequestController.createRequest)
     .get(contactRequestController.getRequests);
+
+//Matches with a specific request id 
+router.route("/:id")
+    .delete(contactRequestController.remove);
 module.exports = router;

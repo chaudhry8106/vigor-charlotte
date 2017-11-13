@@ -13,6 +13,7 @@ import SnackBar from 'material-ui/Snackbar'
 import RaisedButton from 'material-ui/RaisedButton';
 import moment from 'moment'
 import axios from 'axios'
+import API from "../../utils/API.js"
 
 class Appointments extends Component {
 
@@ -39,7 +40,7 @@ state = {
       email: this.state.email,
       phone: this.state.phone
     }
-    axios.post('api/appointments', appointment)
+    API.saveAppointment('api/appointments', appointment)
     .then(response => 
       {
         //send text message to users number using Twilio
@@ -62,17 +63,6 @@ state = {
     const regex = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/
     return regex.test(phoneNumber) ? this.setState({ phone: phoneNumber, validPhone: true }) : this.setState({ validPhone: false })
   }
-
-  componentWillMount() {
-  
-        axios.get('api/appointments').then(res => {
-          console.log(res.data.data)
-          //if appointment date has past, delete appointment
-          //if date has not occured, mark on calendar as disabled time.
-
-            })
-  }
-
   renderAppointmentConfirmation() {
     const spanStyle = { color: '#00bcd4' }
     return <section>

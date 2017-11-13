@@ -10,6 +10,7 @@ import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios'
+import API from "../../utils/API.js"
 
 class Contact extends Component {
   state = {
@@ -29,12 +30,10 @@ class Contact extends Component {
     email: this.state.email,
     message: this.state.message
   };
-  axios.post("/api/contactRequest", requestObj)
+  API.saveRequest(requestObj)
   .then(res => {
-    
     this.setState({ confirmationModalOpen: !this.state.confirmationModalOpen})
     this.setState({name: "", email: "", message: ""})
-    console.log(res)
   })
   .catch(err=>console.log(err));
  

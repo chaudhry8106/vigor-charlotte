@@ -13,13 +13,20 @@ module.exports = {
             if (err) {
                 console.log(err);
             } else {
-                console.log(newRequest);
                 res.send(newRequest);
             }
         })
     },
     getRequests: function(req, res) {
         db.ContactRequest.find({})
+            .then(data => res.json(data))
+            .catch(err => res.status(422).json(err));
+    },
+    remove: function(req, res) {
+        //deleting specific contact request
+        db.ContactRequest.
+        findById({ _id: req.params.id })
+            .then(dbObj => dbObj.remove())
             .then(data => res.json(data))
             .catch(err => res.status(422).json(err));
     }
