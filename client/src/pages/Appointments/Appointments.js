@@ -27,30 +27,29 @@ state = {
   lastName:"",
   date: "",
   slot: "",
-  confirmationModalOpen: false,
   confirmationSnackbarOpen: false
 }
 
   handleSubmit(event) {
    
     const appointment = {
-      date: moment(this.state.date).format('YYYY-DD-MM'),
+      date: moment(this.state.date).format('MM-DD-YYYY'),
       slot: this.state.slot,
       name: this.state.firstName + ' ' + this.state.lastName,
       email: this.state.email,
       phone: this.state.phone
     }
-    API.saveAppointment('api/appointments', appointment)
+    API.saveAppointment(appointment)
     .then(response => 
       {
         //send text message to users number using Twilio
         
-        this.setState({ confirmationSnackbarMessage: "Appointment succesfully added!", confirmationSnackbarOpen: true, processed: true })
+        this.setState({ confirmationSnackbarMessage: "Appointment succesfully added!", confirmationModalOpen: false, confirmationSnackbarOpen: true, processed: true })
       }
     )
     .catch(err => {
       console.log(err)
-      return this.setState({ confirmationSnackbarMessage: "Appointment failed to save.", confirmationSnackbarOpen: true })
+      return this.setState({ confirmationSnackbarMessage: "Appointment failed to save.", confirmationModalOpen: false, confirmationSnackbarOpen: true })
     })
   }
 
@@ -69,8 +68,8 @@ state = {
       <p>Name: <span style={spanStyle}>{this.state.firstName} {this.state.lastName}</span></p>
       <p>Number: <span style={spanStyle}>{this.state.phone}</span></p>
       <p>Email: <span style={spanStyle}>{this.state.email}</span></p>
-      <p>Appointment: <span style={spanStyle}>{moment(this.state.date).format('dddd[,] MMMM Do[,] YYYY')}</span> at <span style={spanStyle}>{moment(this.state.slot).format('h:mm a')}</span></p>
-    </section>
+      <p>Appointment: <span style={spanStyle}>{moment(this.state.date).format('dddd[,] MMMM Do[,] YYYY')}</span> at <span style={spanStyle}>{this.state.slot}</span></p>
+    </section>//moment(this.state.slot).format('h:mm a')
   }
 
 
@@ -112,8 +111,11 @@ state = {
               <TimePicker 
               onChange={(evt, newValue) => 
               {
+                console.log(newValue);
                 console.log(moment(newValue).format("LT"));
-                this.setState({ slot: moment(newValue).format("LT") })
+                const time =moment(newValue).format("LT");
+                console.log(time);
+                this.setState({ slot: time })
               }
                 }/>
               <h4>Share your contact information with us and we'll send you a reminder:</h4>

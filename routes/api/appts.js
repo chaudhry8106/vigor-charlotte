@@ -8,7 +8,7 @@ router.route("/")
     .post(apptController.create);
 
 
-// Matches with "/api/appointment/:id"
+// Matches with "/api/appointments/:id"
 router.route("/:id")
     .get(apptController.findById)
     //.put(apptController.update)

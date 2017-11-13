@@ -9,6 +9,7 @@ import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
+import {orange500, blue500} from 'material-ui/styles/colors';
 import axios from 'axios'
 import API from "../../utils/API.js"
 
@@ -33,7 +34,7 @@ class Contact extends Component {
   API.saveRequest(requestObj)
   .then(res => {
     this.setState({ confirmationModalOpen: !this.state.confirmationModalOpen})
-    this.setState({name: "", email: "", message: ""})
+    
   })
   .catch(err=>console.log(err));
  
@@ -50,6 +51,20 @@ class Contact extends Component {
   }
 
   render() {
+    const inputStyles = { 
+      errorStyle: {
+      color: orange500,
+    },
+      underlineStyle: {
+        borderColor: orange500,
+      },
+      floatingLabelStyle: {
+        color: orange500,
+      },
+      floatingLabelFocusStyle: {
+        color: blue500,
+      },
+    };
     
     const contactFormFilled = this.state.name && this.state.email && this.state.message
     && this.state.validEmail && this.state.validMessage
@@ -58,7 +73,10 @@ class Contact extends Component {
       <FlatButton
         label="Dismiss"
         primary={true}
-        onClick={() => this.setState({ confirmationModalOpen : false})}
+        onClick={() => {this.setState({ confirmationModalOpen : false})
+        this.setState({name:"", email:"", message:""});
+  
+      }}
         />
     ]
     return (
@@ -118,16 +136,21 @@ class Contact extends Component {
                       <TextField
                       style={{ display: 'block' }}
                       name="name"
+                      floatingLabelStyle={inputStyles.floatingLabelStyle}
                       hintText="Name"
                       floatingLabelText="Name"
-                      onChange={(evt, newValue) => this.setState({ name: newValue })}/>
+                      errorText={this.state.name.length > 0 ? null : 'This field is required'}
+                      errorStyle= {inputStyles.errorStyle}
+                      onChange={(evt, newValue) => newValue.length > 0 ? this.setState({ name: newValue }): this.setState({ name: "" })}/>
                       
                       <TextField
                       style={{ display: 'block' }}
                       name="email"
                       hintText="name@mail.com"
+                      floatingLabelStyle={inputStyles.floatingLabelStyle}
                       floatingLabelText="Email"
-                      errorText={this.state.validEmail ? null : 'Enter a valid email address'}
+                      errorText={this.state.validEmail ? null : 'This field is required'}
+                      errorStyle= {inputStyles.errorStyle}
                       onChange={(evt, newValue) => this.validateEmail(newValue)}/>
 
                       <TextField
@@ -136,8 +159,10 @@ class Contact extends Component {
                       multiLine= "true"
                       rows = "3"
                       hintText="Let us know how we can help"
+                      floatingLabelStyle={inputStyles.floatingLabelStyle}
                       floatingLabelText="Message"
-                      errorText={this.state.validMessage ? null: 'Please fill out'}
+                      errorText={this.state.validMessage ? null: 'This field is required'}
+                      errorStyle= {inputStyles.errorStyle}
                       onChange={(evt, newValue) => this.validateMessage(newValue)}
                       />
 
