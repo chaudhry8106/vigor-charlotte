@@ -281,7 +281,7 @@ requestCardNonce = (event) =>{
                         <form action="" method="post" novalidate="novalidate">
                             <div className="form-group text-center">
                                 <ul className="list-inline">
-                                    <li className="list-inline-item"><i className="text-muted fa fa-cc-visa fa-2x"></i></li>
+                                    <li className="list-inline-item"><i className="fa fa-cc-visa fa-2x"></i></li>
                                     <li className="list-inline-item"><i className="fa fa-cc-mastercard fa-2x"></i></li>
                                     <li className="list-inline-item"><i className="fa fa-cc-amex fa-2x"></i></li>
                                     <li className="list-inline-item"><i className="fa fa-cc-discover fa-2x"></i></li>
@@ -339,25 +339,44 @@ requestCardNonce = (event) =>{
             </section>
             <br />
             <section>
-                <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                    <input type="hidden" name="cmd" value="_s-xclick" />
-                    <input type="hidden" name="hosted_button_id" value="19218" />
-                    <table>
-                        <tr><td><input type="hidden" name="on0" value="Color" />Color</td></tr><tr><td><select name="os0">
-                        <option value="Red">Red $10.00</option>
-                        <option value="Blue">Blue $8.00</option>
-                        <option value="Green">Green $12.00</option>
-                    </select> </td></tr>
-                    <tr><td><input type="hidden" name="on1" value="Size" />Size</td></tr><tr><td><select name="os1">
-                    <option value="Small">Small</option>
-                    <option value="Large">Large</option>
-                    </select> </td></tr>
-                    </table>
-                    <br />
-                    <input type="hidden" name="currency_code" value="USD" />
-                    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_addtocart_120x26.png" alt="Add to Cart" name="submit" />
-                    <img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                </form>
+                <div id="pay-invoice" className="card">
+                    <div className="card-body">
+                        <div className="card-title">
+                            <h3 className="text-center">Pay with PayPal</h3>
+                        </div>
+                        <hr />
+                        <div className="form-group text-center">
+                            <ul className="list-inline">
+                                <li className="list-inline-item"><i className="fa fa-paypal fa-2x" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                        <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_s-xclick" />
+                        <input type="hidden" name="hosted_button_id" value="ACPQ4GAK8SFGS" />
+                        
+                        <div className="form-group">
+                            <input type="hidden" name="on0" value="Choose duration" />Choose duration of service
+                            <select name="os0" class="form-control">
+                                <option value="30 min">30 min $79.99 USD</option>
+                                <option value="60 min">60 min $99.99 USD</option>
+                                <option value="90 min">90 min $119.99 USD</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <input type="hidden" name="on1" value="Choose type of service" />Choose type of service
+                            <select name="os1" class="form-control">
+                                <option value="Personal Training">Personal Training </option>
+                                <option value="Cardio Training">Cardio Training </option>
+                                <option value="Movement Education">Movement Education </option>
+                                <option value="Clinical Bodywork">Clinical Bodywork </option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block">Add to cart</button>
+                        </form>
+                    </div>
+                </div>
+                <br />
             </section>
 
 
