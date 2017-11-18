@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import './index.css';
+import './sqpaymentform.css';
 import App from './App';
 // import Cover from './Cover';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

@@ -21,6 +21,9 @@ const appointmentSchema = new Schema({
     slot: {
         type: String,
         unique: true
+    },
+    therapist: {
+        type: String
     }
 });
 const Appointment = mongoose.model("Appointment", appointmentSchema);

@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import { Container } from "../../components/Grid";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
 import Dialog from 'material-ui/Dialog'
 import DatePicker from 'material-ui/DatePicker'
 import TimePicker from "material-ui/TimePicker"
 import TextField from 'material-ui/TextField'
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton'
 import SnackBar from 'material-ui/Snackbar'
 import RaisedButton from 'material-ui/RaisedButton';
 import moment from 'moment'
-import axios from 'axios'
+
 import API from "../../utils/API.js"
 
 class Appointments extends Component {
@@ -27,7 +27,9 @@ state = {
   lastName:"",
   date: "",
   slot: "",
-  confirmationSnackbarOpen: false
+  confirmationSnackbarOpen: false,
+  apptType: "",
+  pfdTherapist: ""
 }
 
   handleSubmit(event) {
@@ -54,12 +56,12 @@ state = {
   }
 
   validateEmail(email) {
-    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    const regex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i
     return regex.test(email) ? this.setState({ email: email, validEmail: true }) : this.setState({ validEmail: false })
   }
 
   validatePhone(phoneNumber) {
-    const regex = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/
+    const regex = /^(1\s|1|)?((\(\d{3}\))|\d{3})(-|\s)?(\d{3})(-|\s)?(\d{4})$/
     return regex.test(phoneNumber) ? this.setState({ phone: phoneNumber, validPhone: true }) : this.setState({ validPhone: false })
   }
   renderAppointmentConfirmation() {
@@ -71,7 +73,10 @@ state = {
       <p>Appointment: <span style={spanStyle}>{moment(this.state.date).format('dddd[,] MMMM Do[,] YYYY')}</span> at <span style={spanStyle}>{this.state.slot}</span></p>
     </section>//moment(this.state.slot).format('h:mm a')
   }
-
+  handleChange =(event, index, value) => {
+    this.setState({apptType:value});
+    console.log(this.state.apptType);
+  }
 
   render() {
     const contactFormFilled = this.state.firstName && this.state.lastName && this.state.phone && this.state.email && this.state.validPhone && this.state.validEmail && this.state.date && this.state.slot
@@ -85,8 +90,9 @@ state = {
         primary={true}
         onClick={() => this.handleSubmit()} />
     ]
-    
+    let therapist= ["Therapist 1", "Therapist 2", "Therapist 3", "Therapist 4", "Therapist 5"]
     return (
+     
       <Container fluid>
         <Nav />
         <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
@@ -97,7 +103,40 @@ state = {
           <div class="card mb-4">
             <div class="card-block">
               <h3 class="card-title">Make an Appointment</h3>
-        
+
+              <h4>Select Appointment Type:</h4>
+              <SelectField
+                      style={{
+                        marginLeft: 10
+                      }}
+                      floatingLabelText="Select Type"
+                      value={this.state.apptType}
+                      onChange={(event, index, value) =>this.setState({apptType:value})}>
+                      <MenuItem value={"MSG"} primaryText="Massage Therapy" />
+                      <MenuItem value={"PT"} primaryText="Personal Training" />
+                      <MenuItem value={"EDU"} primaryText="Movement Education" />
+                      <MenuItem value={"CLINICAL"} primaryText="Clinical Bodywork" />
+                      <MenuItem value={"CARDIO"} primaryText="Cardio Training" />
+                      
+                      </SelectField>
+                      
+              <h4>Select Preferred Therapist:</h4>
+              <SelectField
+                      style={{
+                        marginLeft: 10
+                      }}
+                      floatingLabelText="Select Therapist"
+                      value={this.state.pfdTherapist}
+                      onChange={(event, index, value) =>{console.log({value}) 
+                      this.setState({pfdTherapist:value})}}>
+                      <MenuItem value={therapist[0]} primaryText={therapist[0]} />
+                      <MenuItem value={therapist[1]} primaryText={therapist[1]} />
+                      <MenuItem value={therapist[2]} primaryText={therapist[2]} />
+                      <MenuItem value={therapist[3]} primaryText={therapist[3]} />
+                      <MenuItem value={therapist[4]} primaryText={therapist[4]} />
+                      
+                      </SelectField>
+              
               <h4>Select a Day:</h4>
               <DatePicker
                       style={{
@@ -111,10 +150,7 @@ state = {
               <TimePicker 
               onChange={(evt, newValue) => 
               {
-                console.log(newValue);
-                console.log(moment(newValue).format("LT"));
                 const time =moment(newValue).format("LT");
-                console.log(time);
                 this.setState({ slot: time })
               }
                 }/>
@@ -147,14 +183,14 @@ state = {
                       errorText={this.state.validPhone ? null: 'Enter a valid phone number'}
                       onChange={(evt, newValue) => this.validatePhone(newValue)} />
                     <RaisedButton
-                      style={{ display: 'block' }}
+                      style={{ display: 'block', marginTop: 20, maxWidth: 100}}
                       label={contactFormFilled ? 'Schedule' : 'Fill out your information to schedule'}
                       labelPosition="before"
                       primary={true}
                       fullWidth={true}
                       onClick={() => this.setState({ confirmationModalOpen: !this.state.confirmationModalOpen })}
                       disabled={!contactFormFilled}
-                      style={{ marginTop: 20, maxWidth: 100}} />
+                       />
                   </section>
           <Dialog
             modal={true}

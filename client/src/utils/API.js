@@ -33,5 +33,9 @@ export default {
     deleteRequest: function(id) {
         console.log("api/contactRequest/" + id);
         return axios.delete("api/contactRequest/" + id);
+    },
+    createPayment: function(payment) {
+        console.log(payment);
+        return axios.post("api/payment/processing", payment);
     }
 };

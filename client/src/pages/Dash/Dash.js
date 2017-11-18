@@ -3,6 +3,10 @@ import { Container } from "../../components/Grid";
 import axios from "axios";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
+import ListItem from "material-ui/List/ListItem"
+import Avatar from "material-ui/Avatar"
+
+
 
 class Dash extends Component {
 
@@ -58,24 +62,34 @@ componentWillMount(){
           <div className="col-sm-12">
             <section className="row">
               <div className="col-md-12 col-lg-8">
-                <div className="jumbotron">
+                <div className="jumbotron" style={{borderRadius: "5px", border: "1px solid rgb(0, 10, 20)"}}>
                   <h1 className="mb-4">{`Hello ${this.state.userName}`}</h1>
                   <p className="quote">{`"${this.state.quote}"`}</p>
                   <p className="author">{`---${this.state.author}`}</p>
                   <span style={{zIndex:"50", fontSize:"0.9em"}}><img src="https://theysaidso.com/branding/theysaidso.png" 
-                    height={"20"} width={"20"} alt={"theysaidso.com"}/><a href="https://theysaidso.com" target="_blank" 
+                    height={"20"} width={"20"} alt={"theysaidso.com"}/><a href="https://theysaidso.com" target="_blank" rel="noopener noreferrer" 
                     title="Powered by quotes from theysaidso.com" 
                     style={{color: "#9fcc25", marginLeft: "4px", verticalAlign:"middle"}}>theysaidso.com</a></span>
 
-
-
-            <div className="row" id="parent">
-            <div className="col-md-8 col-12 offset-sm-4 offset-lg-3 offset-xl-2 card d-block border-0 py-2">
+            <div className="row" id="parent" >
+            {/* <div className="col-md-8 col-12 offset-sm-4 offset-lg-3 offset-xl-2 card d-block border-0 py-2"> */}
+            <div className="card d-block border-0 py-2">
+                <a href="" className="btn btn-primary btn-lg mt-2" aria-expanded= "false" data-toggle="collapse" data-target="#massageTherapy" data-parent="#parent">Massage Therapy</a>
                 <a href="" className="btn btn-primary btn-lg mt-2" aria-expanded= "false" data-toggle="collapse" data-target="#cardPersonal" data-parent="#parent">Personal Training</a>
                 <a href="" className="btn btn-primary btn-lg mt-2" aria-expanded= "false" data-toggle="collapse" data-target="#cardCardio" data-parent="#parent">Cardio Training</a>
                 <a href="" className="btn btn-primary btn-lg mt-2" aria-expanded= "false" data-toggle="collapse" data-target="#cardMovement" data-parent="#parent">Movement Education</a>
                 <a href="" className="btn btn-primary btn-lg mt-2" aria-expanded= "false" data-toggle="collapse" data-target="#cardClinical" data-parent="#parent">Clinical Bodywork</a>
-                <div className="collapse py-2" id="cardPersonal">
+                
+                
+                    <div className="collapse py-2" id="massageTherapy">
+                    <div className="card">
+                        <div className="card-block">
+                            <p className="text-xs-center">Massage therapy is manual manipulation of soft body tissues (muscle, connective tissue, tendons and ligaments) to enhance a person's health and well-being. 
+                            There are dozens of types of massage therapy methods (also called modalities).</p>
+                        </div>            
+                    </div>
+                    </div>
+                    <div className="collapse py-2" id="cardPersonal">
                     <div className="card">
                         <div className="card-block">
                             <p className="text-xs-center">A system of cardio-respiratory training, weight training, 
@@ -117,36 +131,42 @@ componentWillMount(){
       
         </div>
               </div>
-              <div class="col-md-12 col-lg-4">
-                <div class="card mb-4">
-                  <div class="card-block">
-                    <h3 class="card-title">Massages:</h3>
-                    <h6 class="card-subtitle mb-2 text-muted">This Week</h6>
+              <div className="col-md-12 col-lg-4">
+                <div className="card mb-4">
+                  <div className="card-block">
+                    <h3 className="card-title">Massages:</h3>
+                    <h6 className="card-subtitle mb-2 text-muted">This Week</h6>
 
-                    <div class="user-progress justify-center">
+                    <div className="user-progress justify-center">
 
-                      <div class="col-sm-3 col-md-2" >
-                        <img src="images/profile-pic.jpg" alt="profile photo" class="circle profile-photo"></img>
+                      <div className="col-sm-3 col-md-2" >
+                      <div className= "circle float-left profile-photo">
+                      <ListItem
+                      disabled={true}
+                      leftAvatar={<Avatar>A</Avatar>}
+                      >
+                      </ListItem> 
+                      </div>
                       </div>
                       
-                      <div class="col-sm-6 col-md-8">
-                        <h6 class="pt-1 offset-sm-2">{this.state.userName}</h6>
-                        {/* <div class="progress progress-custom offset-sm-2">
-                          <div class="progress-bar bg-primary" style={{width: 75% + 'em'}} role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="col-sm-6 col-md-8">
+                        <h6 className="pt-1 offset-sm-2">{this.state.userName}</h6>
+                        {/* <div className="progress progress-custom offset-sm-2">
+                          <div className="progress-bar bg-primary" style={{width: 75% + 'em'}} role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                         </div> */}
                       </div>
                       
 
-                      {/* <div class="col-sm-3 col-md-2">
-                        <div class="progress-label">75%</div>
+                      {/* <div className="col-sm-3 col-md-2">
+                        <div className="progress-label">75%</div>
                       </div> */}
                       
                     </div>
-                    <div class="divider"></div>
+                    <div className="divider"></div>
                   
                     <div id="calendar"></div>
                     
-                    <div class="divider"></div>
+                    <div className="divider"></div>
                   </div>
                 </div>
               </div>

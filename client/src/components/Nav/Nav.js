@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { Route, Link, Redirect, withRouter } from "react-router-dom";
-
-
 
 class Nav extends Component {
 

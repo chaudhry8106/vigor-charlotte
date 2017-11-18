@@ -1,57 +1,266 @@
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import { Container } from "../../components/Grid";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
-import moment from 'moment'
-import axios from 'axios'
+import API from "../../utils/API"
+ // Set the application ID
+ var applicationId = "sq0idp-lPUdSmBAeuRX-ofzZm8PAQ";
+ 
+ // Set the location ID
+ var locationId = "AZ3CYZ36ZZ2EX";
+//import axios from 'axios'
+//import paypal from 'paypal-rest-sdk';
+//import requestCardNonce from "../../sqpaymentform.js"
 
-import paypal from 'paypal-rest-sdk';
 
-const handleSubmit = () => {
+  // Create and initialize a payment form object
+  var paymentForm = new window.SqPaymentForm({
     
-    paypal.configure({
-        mode: 'sandbox', // Sandbox or live
-        client_id: '',
-        client_secret: ''});
+        // Initialize the payment form elements
+        applicationId: applicationId,
+        locationId: locationId,
+        inputClass: 'sq-input',
+    
+        // Customize the CSS for SqPaymentForm iframe elements
+        inputStyles: [{
+            fontSize: '.9em'
+        }],
+    
+        // Initialize Apple Pay placeholder ID
+        applePay: {
+            elementId: 'sq-apple-pay'
+        },
+    
+        // Initialize Masterpass placeholder ID
+        masterpass: {
+            elementId: 'sq-masterpass'
+        },
+    
+        // Initialize the credit card placeholders
+        cardNumber: {
+            elementId: 'sq-card-number',
+            placeholder: '•••• •••• •••• ••••'
+        },
+        cvv: {
+            elementId: 'sq-cvv',
+            placeholder: 'CVV'
+        },
+        expirationDate: {
+            elementId: 'sq-expiration-date',
+            placeholder: 'MM/YY'
+        },
+        postalCode: {
+            elementId: 'sq-postal-code'
+        },
+    
+        // SqPaymentForm callback functions
+        callbacks: {
+    
+            /*
+             * callback function: methodsSupported
+             * Triggered when: the page is loaded.
+             */
+            methodsSupported: function(methods) {
+    
+                var applePayBtn = document.getElementById('sq-apple-pay');
+                var applePayLabel = document.getElementById('sq-apple-pay-label');
+                var masterpassBtn = document.getElementById('sq-masterpass');
+                var masterpassLabel = document.getElementById('sq-masterpass-label');
+    
+                // Only show the button if Apple Pay for Web is enabled
+                // Otherwise, display the wallet not enabled message.
+                if (methods.applePay === true) {
+                    applePayBtn.style.display = 'inline-block';
+                    applePayLabel.style.display = 'none';
+                }
+                // Only show the button if Masterpass is enabled
+                // Otherwise, display the wallet not enabled message.
+                if (methods.masterpass === true) {
+                    masterpassBtn.style.display = 'inline-block';
+                    masterpassLabel.style.display = 'none';
+                }
+            },
+    
+            /*
+             * callback function: createPaymentRequest
+             * Triggered when: a digital wallet payment button is clicked.
+             */
+            createPaymentRequest: function() {
+    
+                var paymentRequestJson;
+                /* ADD CODE TO SET/CREATE paymentRequestJson */
+                return paymentRequestJson;
+            },
+    
+            /*
+             * callback function: cardNonceResponseReceived
+             * Triggered when: SqPaymentForm completes a card nonce request
+             */
+            cardNonceResponseReceived: function(errors, nonce, cardData) {
+                if (errors) {
+                    // Log errors from nonce generation to the Javascript console
+                    console.log("Encountered errors:");
+                    errors.forEach(function(error) {
+                        console.log('  ' + error.message);
+                    });
+    
+                    return;
+                }
+    
+                alert('Nonce received: ' + nonce); /* FOR TESTING ONLY */
 
-    const card_data = {
-        "type": "visa",
-        "number": "4417119669820331",
-        "expire_month": "11",
-        "expire_year": "2018",
-        "cvv2": "123",
-        "first_name": "Joe",
-        "last_name": "Shopper"
-      };
-     axios.post('api/payments', (res, req) => {
-        
-        paypal.creditCard.create(card_data, function(error, credit_card){
-            if (error) {
-              console.log(error);
-              throw error;
-            } else {
-              console.log("Create Credit-Card Response");
-              console.log(credit_card);
+                const buyerInfo = {
+                    buyer_email_address: "test@test.com",
+                    shipping_address: {
+                        address_line_1: "123 main street",
+                        locality: "San Francisco",
+                        administrative_district_level_1: "CA",
+                        postal_code: "94114",
+                        country: "US"
+                        
+                }
             }
-          })
 
-     })
-     .then(response => 
-       {
-           console.log(response);
-       }
-     )
-     .catch(err => {
-       console.log(err)
-     })
-   }
+                API.createPayment(nonce, cardData);
+    
+                // Assign the nonce value to the hidden form field
+                document.getElementById('card-nonce').value = nonce;
+    
+                // POST the nonce form to the payment processing page
+                document.getElementById('nonce-form').submit();
+    
+            },
+    
+            /*
+             * callback function: unsupportedBrowserDetected
+             * Triggered when: the page loads and an unsupported browser is detected
+             */
+            unsupportedBrowserDetected: function() {
+                /* PROVIDE FEEDBACK TO SITE VISITORS */
+            },
+    
+            /*
+             * callback function: inputEventReceived
+             * Triggered when: visitors interact with SqPaymentForm iframe elements.
+             */
+            inputEventReceived: function(inputEvent) {
+                switch (inputEvent.eventType) {
+                    case 'focusClassAdded':
+                        /* HANDLE AS DESIRED */
+                        break;
+                    case 'focusClassRemoved':
+                        /* HANDLE AS DESIRED */
+                        break;
+                    case 'errorClassAdded':
+                        /* HANDLE AS DESIRED */
+                        break;
+                    case 'errorClassRemoved':
+                        /* HANDLE AS DESIRED */
+                        break;
+                    case 'cardBrandChanged':
+                        /* HANDLE AS DESIRED */
+                        break;
+                    case 'postalCodeChanged':
+                        /* HANDLE AS DESIRED */
+                        break;
+                }
+            },
+    
+            /*
+             * callback function: paymentFormLoaded
+             * Triggered when: SqPaymentForm is fully loaded
+             */
+            paymentFormLoaded: function() {
+                /* HANDLE AS DESIRED */
+                console.log("Payment form loaded");
+            }
+        }
+    });
 
+//Card Number: 4532759734545858
+//Postal Code: 94103
+
+
+// const handleSubmit = () => {
+    
+//     paypal.configure({
+//         mode: 'sandbox', // Sandbox or live
+//         client_id: '',
+//         client_secret: ''});
+
+//     const card_data = {
+//         "type": "visa",
+//         "number": "4417119669820331",
+//         "expire_month": "11",
+//         "expire_year": "2018",
+//         "cvv2": "123",
+//         "first_name": "Joe",
+//         "last_name": "Shopper"
+//       };
+//      axios.post('api/payments', (res, req) => {
+        
+//         paypal.creditCard.create(card_data, function(error, credit_card){
+//             if (error) {
+//               console.log(error);
+//               throw error;
+//             } else {
+//               console.log("Create Credit-Card Response");
+//               console.log(credit_card);
+//             }
+//           })
+
+//      })
+//      .then(response => 
+//        {
+//            console.log(response);
+//        }
+//      )
+//      .catch(err => {
+//        console.log(err)
+//      })
+//    }
 
 
 class Payments extends Component {
+        
+       
+        
+      
+state={
+    cardNumber: "",
+    cvv: ""
+};
+
+handleInputChange = event => {
+    // Getting the value and name of the input which triggered the change
+    const { name, value } = event.target;
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    });
+   
+  };
+  
+/*
+ * function: requestCardNonce
+ *
+ * requestCardNonce is triggered when the "Pay with credit card" button is
+ * clicked
+ *
+ * Modifying this function is not required, but can be customized if you
+ * wish to take additional action when the form button is clicked.
+ */
+requestCardNonce = (event) =>{
+    console.log(event);
+    // Don't submit the form until SqPaymentForm returns with a nonce
+    event.preventDefault();
+
+    // Request a nonce from the SqPaymentForm object
+    paymentForm.requestCardNonce();
+
+    console.log(paymentForm);
+}
 
 
   render() {  
@@ -150,7 +359,71 @@ class Payments extends Component {
                     <img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                 </form>
             </section>
-        </main>
+
+
+            <div id="sq-ccbox">
+            {/* <!--
+                You should replace the action attribute of the form with the path of
+                the URL you want to POST the nonce to (for example, "/process-card")
+            --> */}
+            <form id="nonce-form">
+                Pay with a Credit Card
+                <table>
+                <tbody>
+                <tr>
+                    <td>Card Number:</td>
+                    <td><div id="sq-card-number"
+                    name= "cardNumber"
+                    value={this.state.cardNumber}
+                    onChange={this.handleChange}></div></td>
+                </tr>
+                <tr>
+                    <td>CVV:</td>
+                    <td><div id="sq-cvv"
+                    name="cvv"
+                    value={this.state.cvv}
+                    onChange={this.handleChange}></div></td>
+                </tr>
+                <tr>
+                    <td>Expiration Date: </td>
+                    <td><div id="sq-expiration-date"
+                    onChange={this.handleChange}></div></td>
+                </tr>
+                <tr>
+                    <td>Postal Code:</td>
+                    <td><div id="sq-postal-code"
+                    onChange={this.handleChange}></div></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                    <button id="sq-creditcard" className="button-credit-card" onClick={this.requestCardNonce}>
+                        Pay with card
+                    </button>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+
+                {/* <!--
+                After a nonce is generated it will be assigned to this hidden input field.
+                --> */}
+                <input type="hidden" id="card-nonce" name="nonce"/>
+            </form>
+            </div>
+
+            <div id="sq-walletbox">
+            Pay with a Digital Wallet
+            <div id="sq-apple-pay-label" className="wallet-not-enabled">Apple Pay for Web not enabled</div>
+            {/* <!-- Placholder for Apple Pay for Web button --> */}
+            <button id="sq-apple-pay" className="button-apple-pay"></button>
+
+            <div id="sq-masterpass-label" className="wallet-not-enabled">Masterpass not enabled</div>
+            {/* <!-- Placholder for Masterpass button --> */}
+            <button id="sq-masterpass" className="button-masterpass"></button>
+            </div>
+
+
+            </main>
     </Container>
     );
   }

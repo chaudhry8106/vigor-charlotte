@@ -1,8 +1,6 @@
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import { Container } from "../../components/Grid";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
 import FlatButton from 'material-ui/FlatButton'
@@ -10,7 +8,6 @@ import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 import {orange500, blue500} from 'material-ui/styles/colors';
-import axios from 'axios'
 import API from "../../utils/API.js"
 
 class Contact extends Component {
@@ -22,7 +19,6 @@ class Contact extends Component {
     name:"",
     email: "",
     message: "",
-    confirmationModalOpen: false,
     confirmationSnackbarOpen: false
   }
   handleContactRequest =() =>{
@@ -41,7 +37,7 @@ class Contact extends Component {
   }
 
   validateEmail(email) {
-    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    const regex = /^(([^<>()[\].,;:\s@"]+(.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i
     return regex.test(email) ? this.setState({ email: email, validEmail: true }) : this.setState({ validEmail: false })
   }
 
@@ -107,7 +103,7 @@ class Contact extends Component {
           </div>
           <br />
           <div className="card">
-            <iframe src="//www.google.com/maps/embed/v1/place?q=216+Iverson+Way,+Charlotte,+NC+28203%20Rd,%20US&zoom=15&key=AIzaSyB0GBwgrG183HMdL5EBK2Pt_jrNCN52izg"></iframe>
+            <iframe title="property address" src="//www.google.com/maps/embed/v1/place?q=216+Iverson+Way,+Charlotte,+NC+28203%20Rd,%20US&zoom=15&key=AIzaSyB0GBwgrG183HMdL5EBK2Pt_jrNCN52izg"></iframe>
           </div>
         </section>
         <br />
@@ -123,9 +119,9 @@ class Contact extends Component {
                     <div className="dropdown card-title-btn-container">
                       <button className="btn btn-sm btn-subtle dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><em className="fa fa-cog"></em></button>
                       
-                      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"><a className="dropdown-item" href="#"><em className="fa fa-search mr-1"></em> More info</a>
-                        <a className="dropdown-item" href="#"><em className="fa fa-thumb-tack mr-1"></em> Pin Window</a>
-                        <a className="dropdown-item" href="#"><em className="fa fa-remove mr-1"></em> Close Window</a></div>
+                      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"><a className="dropdown-item" href=""><em className="fa fa-search mr-1"></em> More info</a>
+                        <a className="dropdown-item" href=""><em className="fa fa-thumb-tack mr-1"></em> Pin Window</a>
+                        <a className="dropdown-item" href=""><em className="fa fa-remove mr-1"></em> Close Window</a></div>
                     </div>
                     
                     <h6 className="card-subtitle mb-2 text-muted">We are ready to answer all of your questions</h6>

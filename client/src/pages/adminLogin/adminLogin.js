@@ -6,7 +6,6 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
-import axios from 'axios'
 import Admin from '../Admin'
 
 ////////////////////////////////////////////////////////////

@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-// import { List, ListItem } from "../../components/List";
+import { Container } from "../../components/Grid";
 import axios from "axios";
-import { ToastContainer } from "react-toastr";
-import { ToastMessageAnimated } from "react-toastr";
 import SnackBar from 'material-ui/Snackbar'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
-import Nav from "../../components/Nav";
-let container;
+
+
 
 
 class Login extends Component {
@@ -78,7 +75,7 @@ state = {
     }
   };
   validateEmail(email) {
-    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    const regex = /^(([^<>()[\].,;:\s@"]+(.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i
     return regex.test(email) ? this.setState({ email: email, validEmail: true }) : this.setState({ validEmail: false })
   }
   
@@ -107,7 +104,6 @@ state = {
             //direct user back to login;
             this.props.history.push("/login");
         } else {
-            <Nav email= {this.state.email}/>
             //otherwise password is good and send user to main page
             this.props.history.push({
                 pathname: "/dash",
@@ -137,7 +133,7 @@ state = {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <Link to = "/"><a className="navbar-brand cover-brand" href="#">Vigor</a></Link>
+      <Link to = "/"><a className="navbar-brand cover-brand" href="">Vigor</a></Link>
     </div>
   </nav> 
         <div className="text-center">
@@ -145,12 +141,12 @@ state = {
         <br />
         <br />
         <br />
-        <div className="row" id="parent">
-            <div className="col-md-8 col-12 offset-sm-4 offset-lg-3 offset-xl-2 card d-block border-0 py-2">
+        <div className="row" id="parent" >
+            <div className="col-md-8 col-12 offset-sm-4 offset-lg-3 offset-xl-2 card d-block border-0 py-2" >
                 <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardLogin" data-parent="#parent">Login</a>
                 <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardRegister" data-parent="#parent">Register</a>
-                <div className="collapse show py-2" id="cardLogin">
-                    <div className="card">
+                <div className="collapse show py-2" id="cardLogin" >
+                    <div className="card"  style={{borderRadius: "5px", border: "1px solid rgb(0, 10, 20)"}}>
                         <div className="card-block">
                             <h2 className="text-xs-center">Login</h2>
                             <ul className="list-inline text-center">
@@ -195,7 +191,7 @@ state = {
                     </div>
                 </div>
                 <div className="collapse py-2" id="cardRegister">
-                    <div className="card">
+                    <div className="card"   style={{borderRadius: "5px", border: "1px solid rgb(0, 10, 20)"}}>
                         <div className="card-block">
                             <h2 className="text-center">Register</h2>
                             <ul className="list-inline text-center">

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import { Container } from "../../components/Grid";
 import Nav from "../../components/Nav";
 import Header from "../../components/Header";
 
@@ -30,7 +28,7 @@ class About extends Component {
         <section>
           <div className="card-deck">
             <div className="card">
-              <img className="card-img-top" src="images/staff/mitchellgregory.jpeg" alt="Card image cap" />
+              <img className="card-img-top" src="images/staff/mitchellgregory.jpeg" alt="Card cap" />
               <div className="card-block">
                 <h4 className="card-title">Mitchell Gregory</h4>
                 <h5 className="card-title">Owner</h5>
@@ -40,7 +38,7 @@ class About extends Component {
               </div>
             </div>
             <div className="card">
-              <img className="card-img-top" src="images/staff/larryclark.jpeg" alt="Card image cap" />
+              <img className="card-img-top" src="images/staff/larryclark.jpeg" alt="Card cap" />
               <div className="card-block">
               <h4 className="card-title">Larry Clark</h4>
               <h5 className="card-title">Business Manager</h5>
@@ -55,7 +53,7 @@ class About extends Component {
         <section>
           <div className="card-deck">
             <div className="card">
-              <img className="card-img-top" src="images/staff/judgefulenwider.jpeg" alt="Card image cap" />
+              <img className="card-img-top" src="images/staff/judgefulenwider.jpeg" alt="Card cap" />
               <div className="card-block">
               <h4 className="card-title">Judge Fulenwider</h4>
               <h5 className="card-title">Lead Trainer</h5>
@@ -66,7 +64,7 @@ class About extends Component {
               </div>
             </div>
             <div className="card">
-              <img className="card-img-top" src="images/staff/devinsholly.jpg" alt="Card image cap" />
+              <img className="card-img-top" src="images/staff/devinsholly.jpg" alt="Card cap" />
               <div className="card-block">
               <h4 className="card-title">Devin "Flex" Sholly</h4>
               <h5 className="card-title">Creative Director</h5>
@@ -77,7 +75,7 @@ class About extends Component {
               </div>
             </div>
             <div className="card">
-              <img className="card-img-top" src="images/staff/reggievandale.jpeg" alt="Card image cap" />
+              <img className="card-img-top" src="images/staff/reggievandale.jpeg" alt="Card cap" />
               <div className="card-block">
               <h4 className="card-title">Reggie Vandale</h4>
               <h5 className="card-title">Senior Trainer</h5>

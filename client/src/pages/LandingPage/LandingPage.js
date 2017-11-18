@@ -12,7 +12,6 @@ componentWillMount= () => {
   //this post call is used to logout user and delete cookie
   axios.post("/userSignup/logout")
   .then(res=>{;
-    let result=res.data;
     //logout 
     this.props.history.push("/");    
     }).catch(err=>console.log(err));
