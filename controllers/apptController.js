@@ -19,13 +19,14 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findByTherapist: function(req, res) {
+        console.log(req.body);
         db.Appointment
-            .findAll(req.body)
+            .find({})
+            .where(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     create: function(req, res) {
-        console.log(req.body);
         db.Appointment
             .create(req.body)
             .then(dbModel => {

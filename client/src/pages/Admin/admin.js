@@ -1,12 +1,17 @@
 import React, {Component} from 'react'
 import API from "../../utils/API.js"
-import "./admin"
-
+import moment from "moment"
+import "./admin.css"
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Admin extends Component {
     state={
         contactRequests: [],
-        appointments: []
+        appointments: [],
+        therapistName: "",
+        therapistAppts: []
     }
     
     //get all customer contact requests
@@ -29,6 +34,18 @@ class Admin extends Component {
             this.setState({appointments:res.data}); 
         })
     }
+
+    loadTherapistAppts=()=>{
+        console.log(this.state.therapistName);
+        API.findByTherapist({pfdTherapist: this.state.therapistName})
+        .then(res=>{
+            console.log(res.data);
+            if(!res.data){
+                this.setState({therapistAppts: []})
+            }
+            this.setState({therapistAppts: res.data});
+        })
+    }
     deleteAppointment=(id)=>{
         console.log(id);
         API.deleteAppointment(id)
@@ -37,50 +54,76 @@ class Admin extends Component {
     };
   
     render(){
+        let therapist= ["Therapist 1", "Therapist 2", "Therapist 3", "Therapist 4", "Therapist 5"]
     return(
-<div className="admin">
-<h3>Protected</h3>
-<div className="row">
-    <div className = "col-md-6">
-<button onClick={this.loadRequests}>Get Customer Contact Requests</button>
-{this.state.contactRequests.length ? (
-    <div>
-    {this.state.contactRequests.map((request, key)=>
-       <ul key = {request._id}>
-       <button onClick={()=>this.deleteContactRequest(request._id)}>Delete</button>
-       <li>Name: {request.name}</li>
-       <li>Email: {request.email}</li>
-       <li>Message: {request.message}</li>
-        </ul>
-         )}
-    </div>
-    ):(
-    <h3>No Requests</h3>
-    )}
-</div>
-<div className = "col-md-6">
-<button onClick={this.loadAppointments}>Get Appointments</button>
-{this.state.appointments.length? (
-    <div>
-    {this.state.appointments.map((appt, key)=>
-       <ul key = {appt._id}>
-       <button onClick={()=>this.deleteAppointment(appt._id)}>Delete</button>
-       <li>Name: {appt.name}</li>
-       <li>Email: {appt.email}</li>
-       <li>Phone: {appt.phone}</li>
-       <li>Date: {appt.date}</li>
-       <li>Time: {appt.slot}</li>
-        </ul>
-         )}
-    </div>
-    ) : (
-        <h3>No Appointments</h3>
-    )}
+        <div className="admin" style= {{backgroundColor:"white"}}>
+        <h3>Protected</h3>
+        <div className="row">
+            <div className = "col-md-6">
+            <RaisedButton label="Get Contact Requests" onClick={this.loadRequests}/>
+        {this.state.contactRequests.length ? (
+            <div>
+            {this.state.contactRequests.map((request, key)=>
+            <ul key = {request._id}>
+            <button onClick={()=>this.deleteContactRequest(request._id)}>Delete</button>
+            <li>Name: {request.name}</li>
+            <li>Email: {request.email}</li>
+            <li>Message: {request.message}</li>
+                </ul>
+                )}
+            </div>
+            ):(
+                <div>
+                <br></br>
+                <p style={{color:"grey"}}>No Requests</p>
+                </div>
+            )}
+        </div>
+        <div className = "col-md-6">
+        <SelectField
+            style={{
+            marginLeft: 10
+            }}
+            floatingLabelText="Select Therapist"
+            value={this.state.therapistName}
+            onChange={(event, index, value) =>{
+            this.setState({therapistName:value})}}>
+            <MenuItem value={therapist[0]} primaryText={therapist[0]} />
+            <MenuItem value={therapist[1]} primaryText={therapist[1]} />
+            <MenuItem value={therapist[2]} primaryText={therapist[2]} />
+            <MenuItem value={therapist[3]} primaryText={therapist[3]} />
+            <MenuItem value={therapist[4]} primaryText={therapist[4]} />
+                            
+        </SelectField>
+        <br></br>
+        <RaisedButton label="Get Appointments " onClick={this.loadTherapistAppts}/>
+        {this.state.therapistAppts.length ? (
+            <div >
+            {this.state.therapistAppts.map((appt, key)=>
+            <div style={{marginTop: "10px", borderRadius: "5px", border: "1px solid rgb(0, 10, 20)"}}>
+            <ul key = {appt._id}>
+            <RaisedButton label="Delete" onClick={()=>this.deleteAppointment(appt._id)} />
+            <li>Appointment Type:: {appt.apptType}</li>
+            <li>Preferred Therapist: {appt.pfdTherapist}</li>
+            <li>Name: {appt.name}</li>
+            <li>Email: {appt.email}</li>
+            <li>Phone: {appt.phone}</li>
+            <li>Date: {appt.date}</li>
+            <li>Time: {moment().hour(9).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</li>
+                </ul>
+            </div>
+                )}
+            </div>
+            ) : (<div>
+                <br></br>
+                <p style={{color:"grey"}}>No Appointments</p>
+                </div>
+            )}
 
-    </div>
-</div>
-</div>
-    )
-}
-}
-export default Admin
+            </div>
+        </div>
+        </div>
+            )
+        }
+        }
+        export default Admin

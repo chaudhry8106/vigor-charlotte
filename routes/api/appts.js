@@ -7,6 +7,10 @@ router.route("/")
     .get(apptController.findAll)
     .post(apptController.create);
 
+//Matches with "/api/appointments/therapist"
+router.route("/therapist")
+    .post(apptController.findByTherapist);
+
 
 // Matches with "/api/appointments/:id"
 router.route("/:id")

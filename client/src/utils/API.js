@@ -13,6 +13,10 @@ export default {
     getAppointment: function(id) {
         return axios.get("/api/appointments/" + id);
     },
+    //gets all appointments for therapist
+    findByTherapist: function(therapist) {
+        return axios.post("/api/appointments/therapist", therapist);
+    },
     // Deletes the apointment with the given id
     deleteAppointment: function(id) {
         return axios.delete("/api/appointments/" + id);

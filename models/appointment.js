@@ -20,9 +20,11 @@ const appointmentSchema = new Schema({
     },
     slot: {
         type: String,
-        unique: true
     },
-    therapist: {
+    pfdTherapist: {
+        type: String
+    },
+    apptType: {
         type: String
     }
 });
