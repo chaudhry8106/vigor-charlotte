@@ -28,24 +28,10 @@ class About extends Component {
         <section>
           <div className="card-deck">
             <div className="card">
-              <img className="card-img-top" src="images/staff/mitchellgregory.jpeg" alt="Card cap" />
-              <div className="card-block">
-                <h4 className="card-title">Mitchell Gregory</h4>
-                <h5 className="card-title">Owner</h5>
-                <h6 className="card-title">Movement Specialist</h6>
-                <h6 className="card-title">Personal Trainer</h6>
-                <p className="card-text">Mitchell has devoted his life to helping people be the best and feel their best. He developed a system of patented movement and stretching techniques to teach people, who are in debilitating pain, to become completely independent of all therapists, including him. Mitchell trains professional fighters, athletes, and people of all calibers to reach their full potential.</p>
-              </div>
+              <img className="card-img-top" src="images/running.jpg" alt="Card cap" />
             </div>
             <div className="card">
-              <img className="card-img-top" src="images/staff/larryclark.jpeg" alt="Card cap" />
-              <div className="card-block">
-              <h4 className="card-title">Larry Clark</h4>
-              <h5 className="card-title">Business Manager</h5>
-              <h6 className="card-title">Organizer</h6>
-              <h6 className="card-title">Consultant</h6>
-              <p className="card-text">Larry is the conductor behind the curtain. He makes sure our organization is effective and efficient so that our business can operate without hiccups day in and day out. In unison with his organizational work, Larry helps with many facets of our operations by being an excellent source of business knowledge.</p>
-              </div>
+              <img className="card-img-top" src="images/biking.jpg" alt="Card cap" />
             </div>
           </div>
         </section>
@@ -53,37 +39,13 @@ class About extends Component {
         <section>
           <div className="card-deck">
             <div className="card">
-              <img className="card-img-top" src="images/staff/judgefulenwider.jpeg" alt="Card cap" />
-              <div className="card-block">
-              <h4 className="card-title">Judge Fulenwider</h4>
-              <h5 className="card-title">Lead Trainer</h5>
-              <h6 className="card-title">Movement Educator</h6>
-              <h6 className="card-title">Massage Therapist</h6>
-              <h6 className="card-title">Personal Trainer</h6>
-              <p className="card-text">Judge uses the revolutionary techniques of movement education in unison with massage therapy to provide an experience like no other. Through years of learning under Mitchell, he has learned to combine these practices integrating personal training to change the lives of people who came to him looking to only alleviate their pains.</p>
-              </div>
+              <img className="card-img-top" src="images/walking.jpg" alt="Card cap" />
             </div>
             <div className="card">
-              <img className="card-img-top" src="images/staff/devinsholly.jpg" alt="Card cap" />
-              <div className="card-block">
-              <h4 className="card-title">Devin "Flex" Sholly</h4>
-              <h5 className="card-title">Creative Director</h5>
-              <h6 className="card-title">Photographer</h6>
-              <h6 className="card-title">Producer</h6>
-              <h6 className="card-title">Model</h6>
-              <p className="card-text">Flex is a professional photographer and lead creative director for Vigor. He drives our marketing campaigns and utilizes unique advertising methods. As a seasoned musician, Flex composes music specifically for our therapists creating an unrivaled therapeutic experience for our clients.</p>
-              </div>
+              <img className="card-img-top" src="images/step.jpg" alt="Card cap" />
             </div>
             <div className="card">
-              <img className="card-img-top" src="images/staff/reggievandale.jpeg" alt="Card cap" />
-              <div className="card-block">
-              <h4 className="card-title">Reggie Vandale</h4>
-              <h5 className="card-title">Senior Trainer</h5>
-              <h6 className="card-title">Movement Educator</h6>
-              <h6 className="card-title">Massage Therapist</h6>
-              <br />
-              <p className="card-text">Reggie is highly experienced in using the patented techniques of movement education to alleviate people pain and stress. A strong believer that a healthy mind leads to a healthy body, he instills a positive outlook and changes the way his clients look at their body.</p>
-              </div>
+              <img className="card-img-top" src="images/walkDog.jpg" alt="Card cap" />
             </div>
           </div>
         </section>

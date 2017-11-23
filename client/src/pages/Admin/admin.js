@@ -49,7 +49,7 @@ class Admin extends Component {
     deleteAppointment=(id)=>{
         console.log(id);
         API.deleteAppointment(id)
-        .then(res=>this.loadAppointments())
+        .then(res=>this.loadTherapistAppts(this.state.therapistName))
         .catch(err=>console.log(err));
     };
   

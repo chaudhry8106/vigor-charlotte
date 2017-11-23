@@ -46,23 +46,29 @@ state = {
 
 handleFetch(response) {
  
-  const { appointments } = response
+  console.log(response);
   const initSchedule = {}
+  const therapistArray= []
   const today = moment().startOf('day')
   initSchedule[today.format('YYYY-DD-MM')] = true
-  //reduce applies a function against an accumulator and deach element in the array
+  //reduce applies a function against an accumulator and each element in the array
   //to reduce it to a single value. 
-  const schedule = !appointments.length ? initSchedule : appointments.reduce((currentSchedule, appointment) => {
-    const { date, slot } = appointment
-    console.log(date);
-    console.log(slot);
+  if(response.length>0){
+  response.forEach(function(appt, index){
+    console.log(appt.pfdTherapist);
+    therapistArray.push(appt.pfdTherapist);
+    console.log(therapistArray);
+  })
+}
+  const schedule = !response.length ? initSchedule : response.reduce((currentSchedule, appointment) => {
+    const { date, slot, pfdTherapist } = appointment
     const dateString = moment(date, 'YYYY-DD-MM').format('YYYY-DD-MM')
-    !currentSchedule[date] ? currentSchedule[dateString] = Array(8).fill(false) : null
+    !currentSchedule[date]  ? currentSchedule[dateString] = Array(8).fill(false) : null
+    !currentSchedule[date] ? currentSchedule[therapistArray] = Array(8).fill(false) : null
     Array.isArray(currentSchedule[dateString]) ?
       currentSchedule[dateString][slot] = true : null
     return currentSchedule
   }, initSchedule)
-  
 
   //Imperative x 100, but no regrets
   for (let day in schedule) {
@@ -73,21 +79,20 @@ handleFetch(response) {
   this.setState({
     schedule: schedule
   })
-  console.log(this.state.schedule);
 }
 
-componentWillMount(){
-  async.series({
-    appointments(callback){
-      API.getAllAppointments()
-      .then(res=> {console.log(res.data);
-      callback(null, res.data)
-    }
-    )}
-    }, (err,response)=>{
-      err? console.log(err) : this.handleFetch(response)
-    })
-}
+// componentWillMount(){
+//   async.series({
+//     appointments(callback){
+//       API.getAllAppointments()
+//       .then(res=> {console.log(res.data);
+//       callback(null, res.data)
+//     }
+//     )}
+//     }, (err,response)=>{
+//       err? console.log(err) : this.handleFetch(response)
+//     })
+// }
 
   handleSubmit(event) {
    
@@ -155,6 +160,16 @@ componentWillMount(){
   checkDisableDate(day) {
     const dateString = moment(day).format('YYYY-DD-MM')
     return this.state.schedule[dateString] === true || moment(day).startOf('day').diff(moment().startOf('day')) < 0
+  }
+
+  checkPfdTherapistSchedule(therapist){
+      console.log(therapist);
+      API.findByTherapist({pfdTherapist: therapist})
+      .then(res=>{console.log(res.data);
+        console.log(res.data.length>0);
+          this.handleFetch(res.data);
+      })
+      .catch(err=>console.log(err));
   }
   
   renderConfirmationString() {
@@ -284,7 +299,8 @@ componentWillMount(){
                       value={this.state.pfdTherapist}
                       onChange={(event, index, value) =>{
                         this.handleNextStep()
-                        this.setState({pfdTherapist:value})}}>
+                        this.setState({pfdTherapist:value})
+                        this.checkPfdTherapistSchedule(value)}}>
                       <MenuItem value={therapist[0]} primaryText={therapist[0]} />
                       <MenuItem value={therapist[1]} primaryText={therapist[1]} />
                       <MenuItem value={therapist[2]} primaryText={therapist[2]} />
