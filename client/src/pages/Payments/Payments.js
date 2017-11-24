@@ -324,14 +324,14 @@ requestCardNonce = (event) =>{
                         </div>
                         <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                         <input type="hidden" name="cmd" value="_s-xclick" />
-                        <input type="hidden" name="hosted_button_id" value="ACPQ4GAK8SFGS" />
+                        <input type="hidden" name="hosted_button_id" value="NFQESSVC9HEKJ" />
                         
                         <div className="form-group">
                             <input type="hidden" name="on0" value="Choose duration" />Choose duration of service
                             <select name="os0" class="form-control">
-                                <option value="30 min">30 min $79.99 USD</option>
+                                <option value="30 min">30 min $54.99 USD</option>
                                 <option value="60 min">60 min $99.99 USD</option>
-                                <option value="90 min">90 min $119.99 USD</option>
+                                <option value="90 min">90 min $124.99 USD</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -341,6 +341,15 @@ requestCardNonce = (event) =>{
                                 <option value="Cardio Training">Cardio Training </option>
                                 <option value="Movement Education">Movement Education </option>
                                 <option value="Clinical Bodywork">Clinical Bodywork </option>
+                                <option value="Massage Therapy">Massage Therapy </option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <input type="hidden" name="on2" value="Choose a Therapist" />Choose a Therapist
+                            <select name="os2" class="form-control">
+                                <option value="Therapist 1">Therapist 1 </option>
+                                <option value="Therapist 2">Therapist 2 </option>
+                                <option value="Therapist 3">Therapist 3 </option>
                             </select>
                         </div>
                         <input type="hidden" name="currency_code" value="USD" />

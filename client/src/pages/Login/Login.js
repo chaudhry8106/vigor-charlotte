@@ -143,7 +143,7 @@ state = {
         <br />
         <div className="row" id="parent" >
             <div className="col-md-8 col-12 offset-sm-4 offset-lg-3 offset-xl-2 card d-block border-0 py-2" >
-                <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardLogin" data-parent="#parent">Login</a>
+                <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardLogin" data-parent="#parent">Login</a><span> </span>
                 <a href="" className="btn btn-outline-secondary" data-toggle="collapse" data-target="#cardRegister" data-parent="#parent">Register</a>
                 <div className="collapse show py-2" id="cardLogin" >
                     <div className="card"  style={{borderRadius: "5px", border: "1px solid rgb(0, 10, 20)"}}>

@@ -33,8 +33,7 @@ componentWillMount= () => {
     <div className="cover-div text-center">
       <h3 className="cover-heading">Vigor</h3>
       <p className="cover-text">Helping You Become Independent Of All Therapists, Including Ourselves</p>
-      <a href="login"><button className="btn btn-dark">Enter</button></a>
-      <Link to = "/about"><a className="navbar-brand cover-brand"><button className="btn btn-dark">About</button></a></Link>
+      <a href="login"><button className="btn btn-dark">Login</button></a><span> <a href="about"><button className="btn btn-dark">Continue as Guest</button></a></span>
     </div>
   </Container>
   </div>
