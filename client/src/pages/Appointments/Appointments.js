@@ -4,7 +4,6 @@ import Nav from "../../components/Nav";
 import Header from "../../components/Header";
 import Dialog from 'material-ui/Dialog'
 import DatePicker from 'material-ui/DatePicker'
-import TimePicker from "material-ui/TimePicker"
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -13,13 +12,11 @@ import SnackBar from 'material-ui/Snackbar'
 import Card from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton';
 import moment from 'moment'
-import async from 'async'
 import API from "../../utils/API.js"
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
 import {
   Step,
   Stepper,
-  StepLabel,
   StepContent,
   StepButton
 } from 'material-ui/Stepper'
@@ -61,12 +58,12 @@ handleFetch(response) {
   })
 }
   const schedule = !response.length ? initSchedule : response.reduce((currentSchedule, appointment) => {
-    const { date, slot, pfdTherapist } = appointment
+    const { date, slot} = appointment
     const dateString = moment(date, 'YYYY-DD-MM').format('YYYY-DD-MM')
-    !currentSchedule[date]  ? currentSchedule[dateString] = Array(8).fill(false) : null
-    !currentSchedule[date] ? currentSchedule[therapistArray] = Array(8).fill(false) : null
+    !currentSchedule[date]  ? currentSchedule[dateString] = Array(8).fill(false) : null;
+    //!currentSchedule[date] ? currentSchedule[therapistArray] = Array(8).fill(false) : null
     Array.isArray(currentSchedule[dateString]) ?
-      currentSchedule[dateString][slot] = true : null
+      currentSchedule[dateString][slot] = true : null;
     return currentSchedule
   }, initSchedule)
 
@@ -241,7 +238,7 @@ handleFetch(response) {
         primary={true}
         onClick={() => this.handleSubmit()} />
     ]
-    let therapist= ["Therapist 1", "Therapist 2", "Therapist 3", "Therapist 4", "Therapist 5"]
+    let therapist= ["Carrie", "Judge", "Steven"]
     return (
      
       <Container fluid>
@@ -304,8 +301,7 @@ handleFetch(response) {
                       <MenuItem value={therapist[0]} primaryText={therapist[0]} />
                       <MenuItem value={therapist[1]} primaryText={therapist[1]} />
                       <MenuItem value={therapist[2]} primaryText={therapist[2]} />
-                      <MenuItem value={therapist[3]} primaryText={therapist[3]} />
-                      <MenuItem value={therapist[4]} primaryText={therapist[4]} />
+                   
                       
               </SelectField>
               </StepContent>

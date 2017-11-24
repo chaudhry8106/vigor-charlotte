@@ -12,7 +12,8 @@ const Header = ({children}) =>
       <a className="btn btn-stripped dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div className= "circle float-left profile-photo"><ListItem
         disabled={true}
-        leftAvatar={<Avatar>A</Avatar>}
+        leftAvatar={<Avatar src = "images/vigor-logo.png"
+        size={40}/>}
         >
         </ListItem> 
         </div>

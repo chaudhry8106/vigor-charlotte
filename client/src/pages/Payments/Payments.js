@@ -106,24 +106,15 @@ import API from "../../utils/API"
                     });
     
                     return;
+                } else {
+
+                    alert('Nonce received: ' + nonce); /* FOR TESTING ONLY */
+                    chargeCardWithNonce(nonce);
                 }
     
-                alert('Nonce received: ' + nonce); /* FOR TESTING ONLY */
+                
 
-                const buyerInfo = {
-                    buyer_email_address: "test@test.com",
-                    shipping_address: {
-                        address_line_1: "123 main street",
-                        locality: "San Francisco",
-                        administrative_district_level_1: "CA",
-                        postal_code: "94114",
-                        country: "US"
-                        
-                }
-            }
-
-                API.createPayment(nonce, cardData);
-    
+                
                 // Assign the nonce value to the hidden form field
                 document.getElementById('card-nonce').value = nonce;
     
@@ -138,6 +129,7 @@ import API from "../../utils/API"
              */
             unsupportedBrowserDetected: function() {
                 /* PROVIDE FEEDBACK TO SITE VISITORS */
+
             },
     
             /*
@@ -180,6 +172,52 @@ import API from "../../utils/API"
 
 //Card Number: 4532759734545858
 //Postal Code: 94103
+
+
+function chargeCardWithNonce (nonce){
+    const payment = {
+    buyerInfo : {
+        buyer_email_address: "test@test.com",
+        shipping_address: {
+            address_line_1: "123 main street",
+            locality: "San Francisco",
+            administrative_district_level_1: "CA",
+            postal_code: "94114",
+            country: "US"
+            }
+        },
+    merchantInfo: {
+        application_id: applicationId,
+        location_id: locationId
+    },
+    nonce: nonce
+    }
+
+
+API.createPayment(payment);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // const handleSubmit = () => {
@@ -271,72 +309,6 @@ requestCardNonce = (event) =>{
             <Header>
                 <h1 className="float-left text-center text-md-left">Payments</h1>
             </Header>
-            <section>
-                <div id="pay-invoice" className="card">
-                    <div className="card-body">
-                        <div className="card-title">
-                            <h3 className="text-center">Pay Invoice</h3>
-                        </div>
-                        <hr />
-                        <form action="" method="post" novalidate="novalidate">
-                            <div className="form-group text-center">
-                                <ul className="list-inline">
-                                    <li className="list-inline-item"><i className="fa fa-cc-visa fa-2x"></i></li>
-                                    <li className="list-inline-item"><i className="fa fa-cc-mastercard fa-2x"></i></li>
-                                    <li className="list-inline-item"><i className="fa fa-cc-amex fa-2x"></i></li>
-                                    <li className="list-inline-item"><i className="fa fa-cc-discover fa-2x"></i></li>
-                                </ul>
-                            </div>
-                            <div className="form-group">
-                                <label for="cc-payment" className="control-label mb-1">Payment amount</label>
-                                <input id="cc-pament" name="cc-payment" type="text" className="form-control" aria-required="true" aria-invalid="false" value="100.00"/>
-                            </div>
-                            <div className="form-group has-success">
-                                <label for="cc-name" className="control-label mb-1">Name on card</label>
-                                <input id="cc-name" name="cc-name" type="text" className="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error"/>
-                                <span className="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
-                            </div>
-                            <div className="form-group">
-                                <label for="cc-number" className="control-label mb-1">Card number</label>
-                                <input id="cc-number" name="cc-number" type="tel" className="form-control cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number"/>
-                                <span className="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                            </div>
-                            <div className="row">
-                                <div className="col-6">
-                                    <div className="form-group">
-                                        <label for="cc-exp" className="control-label mb-1">Expiration</label>
-                                        <input id="cc-exp" name="cc-exp" type="tel" className="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY" autocomplete="cc-exp"/>
-                                        <span className="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
-                                    </div>
-                                </div>
-                                <div className="col-6">
-                                    <label for="x_card_code" className="control-label mb-1">Security code</label>
-                                    <div className="input-group">
-                                        <input id="x_card_code" name="x_card_code" type="tel" className="form-control cc-cvc" value="" data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" autocomplete="off"/>
-                                        <div className="input-group-addon">
-                                            <span className="fa fa-question-circle fa-lg" data-toggle="popover" data-container="body" data-html="true" data-title="Security Code" 
-                                            data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
-                                            data-trigger="hover"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label for="x_zip" className="control-label mb-1">Postal code</label>
-                                <input id="x_zip" name="x_zip" type="text" className="form-control" value="" data-val="true" data-val-required="Please enter the ZIP/Postal code" autocomplete="postal-code"/>
-                                <span className="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
-                            </div>
-                            <div>
-                                <button id="payment-button" type="submit" className="btn btn-lg btn-primary btn-block">
-                                    <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                    <span id="payment-button-amount">Pay $100.00</span>
-                                    {/* <span id="payment-button-sending" style="display:none;">Sending…</span> */}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
             <br />
             <section>
                 <div id="pay-invoice" className="card">
@@ -379,8 +351,37 @@ requestCardNonce = (event) =>{
                 <br />
             </section>
 
+            <section>
+            <div id="pay-invoice" className="card">
+                <div className="card-body">
+                    <div className="card-title">
+                        <h3 className="text-center">Pay with Square</h3>
+                    </div>
+                    <hr />
+                    <div className="form-group text-center">
+                        <ul className="list-inline">
+                            <li><img src="images/Square-Payment-Methods.jpg" alt="square"/></li>
+                        </ul>
+                    </div>
+                    <div className="form-group">
+                        <input type="hidden" name="on0" value="Choose duration" />Choose duration of service
+                        <select name="os0" class="form-control">
+                            <option value="30 min">30 min $79.99 USD</option>
+                            <option value="60 min">60 min $99.99 USD</option>
+                            <option value="90 min">90 min $119.99 USD</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <input type="hidden" name="on1" value="Choose type of service" />Choose type of service
+                        <select name="os1" class="form-control">
+                            <option value="Personal Training">Personal Training </option>
+                            <option value="Cardio Training">Cardio Training </option>
+                            <option value="Movement Education">Movement Education </option>
+                            <option value="Clinical Bodywork">Clinical Bodywork </option>
+                        </select>
+                    </div>
 
-            <div id="sq-ccbox">
+                    <div id="sq-ccbox">
             {/* <!--
                 You should replace the action attribute of the form with the path of
                 the URL you want to POST the nonce to (for example, "/process-card")
@@ -415,7 +416,7 @@ requestCardNonce = (event) =>{
                 </tr>
                 <tr>
                     <td colspan="2">
-                    <button id="sq-creditcard" className="button-credit-card" onClick={this.requestCardNonce}>
+                    <button id="sq-creditcard" className="button-credit-card btn btn-lg btn-primary btn-block" onClick={this.requestCardNonce}>
                         Pay with card
                     </button>
                     </td>
@@ -429,21 +430,16 @@ requestCardNonce = (event) =>{
                 <input type="hidden" id="card-nonce" name="nonce"/>
             </form>
             </div>
-
-            <div id="sq-walletbox">
-            Pay with a Digital Wallet
-            <div id="sq-apple-pay-label" className="wallet-not-enabled">Apple Pay for Web not enabled</div>
-            {/* <!-- Placholder for Apple Pay for Web button --> */}
-            <button id="sq-apple-pay" className="button-apple-pay"></button>
-
-            <div id="sq-masterpass-label" className="wallet-not-enabled">Masterpass not enabled</div>
-            {/* <!-- Placholder for Masterpass button --> */}
-            <button id="sq-masterpass" className="button-masterpass"></button>
-            </div>
+        </div>
+    </div>
+    <br />
+</section>
 
 
-            </main>
-    </Container>
+            
+
+ </main>
+ </Container>
     );
   }
 }

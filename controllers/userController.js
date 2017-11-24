@@ -47,7 +47,7 @@ module.exports = {
                     let pwToCheck = crypto.createHash("md5").update(chkPassword).digest("hex");
                     if (pwToCheck === entry.login_pass) {
                         //if password is correct return user data and create cookie for session
-                        res.cookie('user', entry);
+                        res.cookie('user', entry._id);
                         res.json(entry._id);
                     } else {
                         //if user password does not match

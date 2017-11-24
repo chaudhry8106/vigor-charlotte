@@ -38,8 +38,8 @@ export default {
         console.log("api/contactRequest/" + id);
         return axios.delete("api/contactRequest/" + id);
     },
-    createPayment: function(payment) {
-        console.log(payment);
-        return axios.post("api/payment/processing", payment);
+    createPayment: function(nonce, buyerInfo, merchantInfo) {
+        console.log(nonce, buyerInfo, merchantInfo);
+        return axios.post("api/payment/processing", nonce, buyerInfo, merchantInfo);
     }
 };

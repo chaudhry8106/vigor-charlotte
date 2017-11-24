@@ -134,18 +134,11 @@ componentWillMount(){
               <div className="col-md-12 col-lg-4">
                 <div className="card mb-4">
                   <div className="card-block">
-                    <h3 className="card-title">Massages:</h3>
-                    <h6 className="card-subtitle mb-2 text-muted">This Week</h6>
-
+                    <h3 className="card-title">Appointments:</h3>
                     <div className="user-progress justify-center">
 
                       <div className="col-sm-3 col-md-2" >
                       <div className= "circle float-left profile-photo">
-                      <ListItem
-                      disabled={true}
-                      leftAvatar={<Avatar>A</Avatar>}
-                      >
-                      </ListItem> 
                       </div>
                       </div>
                       
@@ -164,7 +157,7 @@ componentWillMount(){
                     </div>
                     <div className="divider"></div>
                   
-                    <div id="calendar"></div>
+                    <div id="calendar">Appointments here</div>
                     
                     <div className="divider"></div>
                   </div>

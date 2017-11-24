@@ -36,10 +36,8 @@ class Admin extends Component {
     }
 
     loadTherapistAppts=()=>{
-        console.log(this.state.therapistName);
         API.findByTherapist({pfdTherapist: this.state.therapistName})
         .then(res=>{
-            console.log(res.data);
             if(!res.data){
                 this.setState({therapistAppts: []})
             }
@@ -54,7 +52,7 @@ class Admin extends Component {
     };
   
     render(){
-        let therapist= ["Therapist 1", "Therapist 2", "Therapist 3", "Therapist 4", "Therapist 5"]
+        let therapist= ["Carrie", "Judge", "Steven"]
     return(
         <div className="admin" style= {{backgroundColor:"white"}}>
         <h3>Protected</h3>
@@ -103,7 +101,7 @@ class Admin extends Component {
             <div style={{marginTop: "10px", borderRadius: "5px", border: "1px solid rgb(0, 10, 20)"}}>
             <ul key = {appt._id}>
             <RaisedButton label="Delete" onClick={()=>this.deleteAppointment(appt._id)} />
-            <li>Appointment Type:: {appt.apptType}</li>
+            <li>Appointment Type: {appt.apptType}</li>
             <li>Preferred Therapist: {appt.pfdTherapist}</li>
             <li>Name: {appt.name}</li>
             <li>Email: {appt.email}</li>
