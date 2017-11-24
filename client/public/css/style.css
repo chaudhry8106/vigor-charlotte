@@ -73,6 +73,11 @@ p {
   height:580px;
 }
 
+.header {
+  color: #c1a115;
+  font-family: 'Give You Glory', cursive;
+}
+
 .cover-brand {
   font-size: 30px;
   color: #c1a115;

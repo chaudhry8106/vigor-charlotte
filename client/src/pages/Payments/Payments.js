@@ -269,7 +269,7 @@ requestCardNonce = (event) =>{
         <Nav />
         <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
             <Header>
-                <h1 className="float-left text-center text-md-left">Payments</h1>
+                <h1 className="float-left text-center text-md-left header">Payments</h1>
             </Header>
             <section>
                 <div id="pay-invoice" className="card">
