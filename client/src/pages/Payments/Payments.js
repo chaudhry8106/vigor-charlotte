@@ -307,7 +307,7 @@ requestCardNonce = (event) =>{
         <Nav />
         <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
             <Header>
-                <h1 className="float-left text-center text-md-left">Payments</h1>
+                <h1 className="float-left text-center text-md-left header">Payments</h1>
             </Header>
             <br />
             <section>
@@ -347,9 +347,9 @@ requestCardNonce = (event) =>{
                         <div className="form-group">
                             <input type="hidden" name="on2" value="Choose a Therapist" />Choose a Therapist
                             <select name="os2" class="form-control">
-                                <option value="Therapist 1">Therapist 1 </option>
-                                <option value="Therapist 2">Therapist 2 </option>
-                                <option value="Therapist 3">Therapist 3 </option>
+                                <option value="Therapist 1">Carrie </option>
+                                <option value="Therapist 2">Judge</option>
+                                <option value="Therapist 3">Steven</option>
                             </select>
                         </div>
                         <input type="hidden" name="currency_code" value="USD" />
