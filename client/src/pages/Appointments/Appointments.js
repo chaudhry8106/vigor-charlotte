@@ -42,8 +42,6 @@ state = {
 
 
 handleFetch(response) {
- 
-  console.log(response);
   const initSchedule = {}
   const therapistArray= []
   const today = moment().startOf('day')
@@ -52,16 +50,14 @@ handleFetch(response) {
   //to reduce it to a single value. 
   if(response.length>0){
   response.forEach(function(appt, index){
-    console.log(appt.pfdTherapist);
     therapistArray.push(appt.pfdTherapist);
-    console.log(therapistArray);
   })
 }
   const schedule = !response.length ? initSchedule : response.reduce((currentSchedule, appointment) => {
     const { date, slot} = appointment
     const dateString = moment(date, 'YYYY-DD-MM').format('YYYY-DD-MM')
-    !currentSchedule[date]  ? currentSchedule[dateString] = Array(8).fill(false) : null;
-    //!currentSchedule[date] ? currentSchedule[therapistArray] = Array(8).fill(false) : null
+    !currentSchedule[date]  ? currentSchedule[dateString] = Array(14).fill(false) : null;
+    //!currentSchedule[date] ? currentSchedule[therapistArray] = Array(14).fill(false) : null
     Array.isArray(currentSchedule[dateString]) ?
       currentSchedule[dateString][slot] = true : null;
     return currentSchedule
@@ -72,7 +68,6 @@ handleFetch(response) {
     let slots = schedule[day]
     slots.length ? (slots.every(slot => slot === true)) ? schedule[day] = true : null : null
   }
-  console.log(schedule);
   this.setState({
     schedule: schedule
   })
@@ -160,11 +155,9 @@ handleFetch(response) {
   }
 
   checkPfdTherapistSchedule(therapist){
-      console.log(therapist);
+     
       API.findByTherapist({pfdTherapist: therapist})
-      .then(res=>{console.log(res.data);
-        console.log(res.data.length>0);
-          this.handleFetch(res.data);
+      .then(res=>{this.handleFetch(res.data);
       })
       .catch(err=>console.log(err));
   }
@@ -186,12 +179,12 @@ handleFetch(response) {
 
   renderAppointmentTimes() {
     if (!this.state.loading) {
-      const slots = [...Array(8).keys()]
+      const slots = [...Array(14).keys()]
       return slots.map(slot => {
         //map creates a new array with the results of calling a provided function on every element in the calling array
         const appointmentDateString = moment(this.state.appointmentDate).format('YYYY-DD-MM')
-        const t1 = moment().hour(9).minute(0).add(slot, 'hours')
-        const t2 = moment().hour(9).minute(0).add(slot + 1, 'hours')
+        const t1 = moment().hour(8).minute(0).add(slot, 'hours')
+        const t2 = moment().hour(8).minute(0).add(slot + 1, 'hours')
         const scheduleDisabled = this.state.schedule[appointmentDateString] ? this.state.schedule[moment(this.state.appointmentDate).format('YYYY-DD-MM')][slot] : false
         const meridiemDisabled = this.state.appointmentMeridiem ? t1.format('a') === 'am' : t1.format('a') === 'pm'
         return <RadioButton

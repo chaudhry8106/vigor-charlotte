@@ -375,9 +375,9 @@ requestCardNonce = (event) =>{
                     <div className="form-group">
                         <input type="hidden" name="on0" value="Choose duration" />Choose duration of service
                         <select name="os0" class="form-control">
-                            <option value="30 min">30 min $79.99 USD</option>
-                            <option value="60 min">60 min $99.99 USD</option>
-                            <option value="90 min">90 min $119.99 USD</option>
+                        <option value="30 min">30 min $54.99 USD</option>
+                        <option value="60 min">60 min $99.99 USD</option>
+                        <option value="90 min">90 min $124.99 USD</option>
                         </select>
                     </div>
                     <div className="form-group">
