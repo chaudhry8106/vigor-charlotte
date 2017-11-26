@@ -24,8 +24,15 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    findApptByEmail: function(req, res) {
+        console.log(`Here is user email: ${req.body.email}`);
+        db.Appointment
+            .find({})
+            .where({ email: req.body.email })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     findByTherapist: function(req, res) {
-        console.log(req.body);
         db.Appointment
             .find({})
             .where(req.body)

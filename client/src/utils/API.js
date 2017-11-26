@@ -3,7 +3,6 @@ import axios from "axios";
 export default {
     // save appointment
     saveAppointment: function(appointment) {
-        console.log(appointment);
         return axios.post("/api/appointments", appointment);
     },
     getAllAppointments: function() {
@@ -16,6 +15,10 @@ export default {
     //gets all appointments for therapist
     findByTherapist: function(therapist) {
         return axios.post("/api/appointments/therapist", therapist);
+    },
+    findByEmail: function(email) {
+        console.log(`user email: ${email}`)
+        return axios.post("/api/appointments/userAppt", email);
     },
     // Deletes the apointment with the given id
     deleteAppointment: function(id) {

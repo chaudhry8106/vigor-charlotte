@@ -5,7 +5,7 @@ import axios from "axios";
 import SnackBar from 'material-ui/Snackbar'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
-
+import Router from "react-router-dom"
 
 
 
@@ -106,9 +106,9 @@ state = {
         } else {
             //otherwise password is good and send user to main page
             this.props.history.push({
-                pathname: "/dash",
+                pathname: "/dash/" + result,
                 //this is only good for the single route, email is lost while navigating through the nav
-            state: {email: res.data}
+            state: {id: res.data}
             });
            
         }

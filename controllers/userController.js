@@ -57,9 +57,9 @@ module.exports = {
             })
     },
     getUser: function(req, res) {
-        console.log(req.body.email);
+        console.log(req.body.id);
         db.User.findOne({
-            email: req.body.email
+            id: req.body.id
         }).exec(function(err, entry) {
             if (err) {
                 res.send(err);

@@ -89,8 +89,6 @@ class Admin extends Component {
             <MenuItem value={therapist[0]} primaryText={therapist[0]} />
             <MenuItem value={therapist[1]} primaryText={therapist[1]} />
             <MenuItem value={therapist[2]} primaryText={therapist[2]} />
-            <MenuItem value={therapist[3]} primaryText={therapist[3]} />
-            <MenuItem value={therapist[4]} primaryText={therapist[4]} />
                             
         </SelectField>
         <br></br>
@@ -107,7 +105,7 @@ class Admin extends Component {
             <li>Email: {appt.email}</li>
             <li>Phone: {appt.phone}</li>
             <li>Date: {appt.date}</li>
-            <li>Time: {moment().hour(9).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</li>
+            <li>Time: {moment().hour(8).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</li>
                 </ul>
             </div>
                 )}

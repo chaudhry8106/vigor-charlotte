@@ -172,7 +172,7 @@ handleFetch(response) {
 
         appointment {this.state.appointmentDate && <span>
           on <span style={spanStyle}>{moment(this.state.appointmentDate).format('dddd[,] MMMM Do')}</span>
-      </span>} {Number.isInteger(this.state.appointmentSlot) && <span>at <span style={spanStyle}>{moment().hour(9).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</span></span>}
+      </span>} {Number.isInteger(this.state.appointmentSlot) && <span>at <span style={spanStyle}>{moment().hour(8).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</span></span>}
       </span>}
     </h2> : null
   }
@@ -207,7 +207,7 @@ handleFetch(response) {
       <p>Name: <span style={spanStyle}>{this.state.firstName} {this.state.lastName}</span></p>
       <p>Number: <span style={spanStyle}>{this.state.phone}</span></p>
       <p>Email: <span style={spanStyle}>{this.state.email}</span></p>
-      <p>Appointment: <span style={spanStyle}>{moment(this.state.appointmentDate).format('dddd[,] MMMM Do[,] YYYY')}</span> at <span style={spanStyle}>{moment().hour(9).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</span> </p>
+      <p>Appointment: <span style={spanStyle}>{moment(this.state.appointmentDate).format('dddd[,] MMMM Do[,] YYYY')}</span> at <span style={spanStyle}>{moment().hour(8).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</span> </p>
     </section>//moment(this.state.slot).format('h:mm a')
   }
   

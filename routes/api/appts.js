@@ -11,6 +11,8 @@ router.route("/")
 router.route("/therapist")
     .post(apptController.findByTherapist);
 
+router.route("/userAppt")
+    .post(apptController.findApptByEmail);
 
 // Matches with "/api/appointments/:id"
 router.route("/:id")

@@ -25,7 +25,8 @@ return (
       <Switch>
         <Route exact path="/" component={LandingPage} />
         {<Route exact path="/login" component={Login} />}
-        {<Route exact path="/dash" component={Dash} />}
+        {<Route exact path="/dash/:id" component={Dash}/>}
+        {<Route exact path="/dash" component={Login} />}
         {<Route exact path="/appointments" component={Appointments} />}
         {<Route exact path="/payments" component={Payments} />}
         {<Route exact path="/about" component={About} />}

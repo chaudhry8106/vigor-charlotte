@@ -5,7 +5,8 @@ import Nav from "../../components/Nav";
 import Header from "../../components/Header";
 import ListItem from "material-ui/List/ListItem"
 import Avatar from "material-ui/Avatar"
-
+import API from "../../utils/API.js"
+import moment from "moment"
 
 
 class Dash extends Component {
@@ -14,25 +15,35 @@ state = {
   quote: "",
   author: "",
   userName: "",
-  email: ""
+  email: "",
+  id: "",
+  appts: []
 }
 
 componentWillMount(){
   //.currently causing problems because the email is lost up navigating through the nav
   // //first, we take the email sent from the landinpage component and send to db for username
-  // console.log(this.props.location.state.email);
-
+  console.log(this.props.location.state.id);
+  this.setState({id: this.props.location.state.id });
   //check for user cookie before loading dash.  If no cookie, route to login
   if (!document.cookie){
     this.props.history.push("/login");
   } else {
-  // axios.post("/userSignup/getUser", email)
-  // .then(response=>{
-  //   console.log(response);
-  //  this.setState({userName: response.data.name})
-  // })
-  // .catch(err=>console.log(err));
+  axios.post("/userSignup/getUser", this.state.id)
+  .then(response=>{
+    console.log(response);
+    this.setState({userEmail: response.data.email})
+      API.findByEmail({email: this.state.userEmail})
+        .then(res=>{console.log(res.data);
+              this.setState({appts: res.data});
+              console.log(this.state.appts);
+        })
+    .catch(err => {console.log(err)}) 
+   this.setState({userName: response.data.name})
+  })
+  .catch(err=>console.log(err));
 
+ 
   axios.get('https://quotes.rest/qod.json')
     .then(response => {
       let createQuote = response.data.contents.quotes[0];
@@ -51,7 +62,10 @@ componentWillMount(){
 }
   
   render() {
+    const today = moment().startOf('day');
+    console.log(today);
     return (
+   
       <Container fluid>
         <Nav />
         <main className="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
@@ -84,8 +98,10 @@ componentWillMount(){
                     <div className="collapse py-2" id="massageTherapy">
                     <div className="card">
                         <div className="card-block">
-                            <p className="text-xs-center">Massage therapy is manual manipulation of soft body tissues (muscle, connective tissue, tendons and ligaments) to enhance a person's health and well-being. 
-                            There are dozens of types of massage therapy methods (also called modalities).</p>
+                            <p className="text-xs-center">Black Sheep Massage is designed to help you relax and unwind with a unique
+                            environment of pampering that uptown has never seen.  Whether you like Swedish or deep tissue massages,
+                            we've got you covered.  Our therapists all have a unique style that will make you feel like you've 
+                            landed in paradise.</p>
                         </div>            
                     </div>
                     </div>
@@ -126,9 +142,6 @@ componentWillMount(){
                 </div>
             </div>  
         </div>  
-
-                        
-      
         </div>
               </div>
               <div className="col-md-12 col-lg-4">
@@ -157,12 +170,31 @@ componentWillMount(){
                     </div>
                     <div className="divider"></div>
                   
-                    <div id="calendar">Appointments here</div>
+                    <div id="calendar">
+                    {this.state.appts.length ? (   
+                    <div>
+            {this.state.appts.map((appt, key)=>
+            <ul key = {appt._id}>
+            <li>Appointment Type: {appt.apptType}</li>
+            <li>Therapist: {appt.pfdTherapist}</li>
+            {/* {moment(appt.date).format('dddd[,] MMMM Do[,] YYYY')} */}
+            <li>Date: {appt.date}</li>
+            <li>Time: {moment().hour(8).minute(0).add(appt.slot, 'hours').format('h:mm a')}</li>
+                </ul>
+                )}
+            </div>
+            ):(
+                <div>
+                <br></br>
+                <p style={{color:"grey"}}>No Appointments</p>
+                </div>
+            )}
                     
                     <div className="divider"></div>
                   </div>
                 </div>
               </div>
+            </div>
             </section>
           </div>
         </section>
