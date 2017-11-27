@@ -47,8 +47,8 @@ module.exports = {
                 let accountSid = 'AC741f233849b2d6f55b7176d377a74257'; // Your Account SID from www.twilio.com/console
                 let authToken = 'your_auth_token'; // Your Auth Token from www.twilio.com/console
                 let client = new twilio(accountSid, authToken);
-                let userDate = moment(user.Date).format('dddd[,] MMMM Do[,] YYYY');
-                let userSlot = moment().hour(9).minute(0).add(user.slot, 'hours').format('h:mm a');
+                let userDate = user.date;
+                let userSlot = moment().hour(8).minute(0).add(user.slot, 'hours').format('h:mm a');
                 let smsBody = `${user.name}, your appointment is scheduled for Date: ${userDate} at Time: ${userSlot}`;
                 let userNumber = user.phone;
                 let therapist = user.pfdTherapist;
@@ -60,9 +60,9 @@ module.exports = {
                     from: '+12345678901' // From a valid Twilio number
                 });
                 //setup email data with unicode symbols
-                let mailString = "New Appointment scheduled:" + " <br>Name: " + user.name + " <br>Number: " + userNumber +
+                let mailString = "New Appointment scheduled:" + " <br>Name: " + user.name + " <br>Number: " + userNumber + "<br>Email: " + user.email +
                     " <br>Date: " + userDate + " <br>Time: " + userSlot + "<br>Therapist: " + therapist + "<br>Type: " + appt;
-                let userId = "info@vigorcharlotte.com"
+                let userId = "vigorappointments@gmail.com"
                 console.log(mailString);
 
                 function getOAuth2Client(cb) {
@@ -97,7 +97,8 @@ module.exports = {
                     var email_lines = [];
 
                     email_lines.push('From: "Appointments" <vigorappointments@gmail.com>');
-                    email_lines.push('To: vigorappointments@gmail.com');
+                    email_lines.push('To: info@vigorcharlotte.com');
+                    email_lines.push('Cc: vigorappointments@gmail.com');
                     email_lines.push('Content-type: text/html;charset=iso-8859-1');
                     email_lines.push('MIME-Version: 1.0');
                     email_lines.push('Subject: New Appointment');

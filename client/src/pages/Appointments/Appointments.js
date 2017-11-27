@@ -91,12 +91,16 @@ handleFetch(response) {
     const appointment = {
       apptType: this.state.apptType,
       pfdTherapist: this.state.pfdTherapist,
-      date: moment(this.state.appointmentDate).format('YYYY-DD-MM'),
+      date: moment(this.state.appointmentDate).format('dddd[,] MMMM Do[,] YYYY'),
       slot: this.state.appointmentSlot,
       name: this.state.firstName + ' ' + this.state.lastName,
       email: this.state.email,
       phone: this.state.phone
     }
+
+    console.log(moment().hour(8).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a'));
+    console.log(appointment.date);
+
     API.saveAppointment(appointment)
     .then(response => 
       {
@@ -124,6 +128,7 @@ handleFetch(response) {
   handleSetAppointmentDate(date) {
     this.handleNextStep();
     this.setState({ appointmentDate: date, confirmationTextVisible: true })
+    console.log(this.state.appointmentDate);
   }
 
   handleSetAppointmentSlot(slot) {

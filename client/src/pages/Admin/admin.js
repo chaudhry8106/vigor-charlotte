@@ -105,7 +105,7 @@ class Admin extends Component {
             <li>Email: {appt.email}</li>
             <li>Phone: {appt.phone}</li>
             <li>Date: {appt.date}</li>
-            <li>Time: {moment().hour(8).minute(0).add(this.state.appointmentSlot, 'hours').format('h:mm a')}</li>
+            <li>Time: {moment().hour(8).minute(0).add(appt.slot, 'hours').format('h:mm a')}</li>
                 </ul>
             </div>
                 )}

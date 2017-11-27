@@ -17,7 +17,6 @@ export default {
         return axios.post("/api/appointments/therapist", therapist);
     },
     findByEmail: function(email) {
-        console.log(`user email: ${email}`)
         return axios.post("/api/appointments/userAppt", email);
     },
     // Deletes the apointment with the given id
@@ -38,11 +37,11 @@ export default {
     },
     //delete a request from the database by id
     deleteRequest: function(id) {
-        console.log("api/contactRequest/" + id);
+        // console.log("api/contactRequest/" + id);
         return axios.delete("api/contactRequest/" + id);
     },
     createPayment: function(nonce, buyerInfo, merchantInfo) {
-        console.log(nonce, buyerInfo, merchantInfo);
+        // console.log(nonce, buyerInfo, merchantInfo);
         return axios.post("api/payment/processing", nonce, buyerInfo, merchantInfo);
     }
 };
