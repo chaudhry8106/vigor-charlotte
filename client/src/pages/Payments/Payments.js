@@ -347,9 +347,9 @@ requestCardNonce = (event) =>{
                         <div className="form-group">
                             <input type="hidden" name="on2" value="Choose a Therapist" />Choose a Therapist
                             <select name="os2" class="form-control">
-                                <option value="Therapist 1">Carrie </option>
-                                <option value="Therapist 2">Judge</option>
-                                <option value="Therapist 3">Steven</option>
+                                <option value="Carrie">Carrie </option>
+                                <option value="Judge">Judge </option>
+                                <option value="Steven">Steven </option>
                             </select>
                         </div>
                         <input type="hidden" name="currency_code" value="USD" />
