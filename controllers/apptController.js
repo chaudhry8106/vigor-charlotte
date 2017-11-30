@@ -47,7 +47,7 @@ module.exports = {
                 let accountSid = 'AC741f233849b2d6f55b7176d377a74257'; // Your Account SID from www.twilio.com/console
                 let authToken = 'your_auth_token'; // Your Auth Token from www.twilio.com/console
                 let client = new twilio(accountSid, authToken);
-                let userDate = user.date;
+                let userDate = moment(user.date, 'YYYY-DD-MM').format('dddd[,] MMMM Do[,] YYYY');
                 let userSlot = moment().hour(8).minute(0).add(user.slot, 'hours').format('h:mm a');
                 let smsBody = `${user.name}, your appointment is scheduled for Date: ${userDate} at Time: ${userSlot}`;
                 let userNumber = user.phone;
@@ -91,7 +91,7 @@ module.exports = {
                 }
 
 
-                function sendSampleMail(auth, cb) {
+                function sendMail(auth, cb) {
                     var gmailClass = google.gmail('v1');
 
                     var email_lines = [];
@@ -121,11 +121,10 @@ module.exports = {
                 }
 
                 getOAuth2Client(function(err, oauth2Client) {
-                    console.log("inside getOAuth");
                     if (err) {
                         console.log('err:', err);
                     } else {
-                        sendSampleMail(oauth2Client, function(err, results) {
+                        sendMail(oauth2Client, function(err, results) {
                             if (err) {
                                 console.log('err:', err);
                             } else {

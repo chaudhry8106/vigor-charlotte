@@ -53,9 +53,13 @@ handleFetch(response) {
     therapistArray.push(appt.pfdTherapist);
   })
 }
+console.log(response);
   const schedule = !response.length ? initSchedule : response.reduce((currentSchedule, appointment) => {
     const { date, slot} = appointment
-    const dateString = moment(date, 'YYYY-DD-MM').format('YYYY-DD-MM')
+    const dateString = moment(date, "YYYY-DD-MM").format('YYYY-DD-MM')
+    console.log(date);
+    console.log(moment(dateString).isValid())
+    console.log(dateString);
     !currentSchedule[date]  ? currentSchedule[dateString] = Array(14).fill(false) : null;
     //!currentSchedule[date] ? currentSchedule[therapistArray] = Array(14).fill(false) : null
     Array.isArray(currentSchedule[dateString]) ?
@@ -71,6 +75,7 @@ handleFetch(response) {
   this.setState({
     schedule: schedule
   })
+  console.log(this.state.schedule);
 }
 
 // componentWillMount(){
@@ -91,7 +96,7 @@ handleFetch(response) {
     const appointment = {
       apptType: this.state.apptType,
       pfdTherapist: this.state.pfdTherapist,
-      date: moment(this.state.appointmentDate).format('dddd[,] MMMM Do[,] YYYY'),
+      date: moment(this.state.appointmentDate).format('YYYY-DD-MM'),
       slot: this.state.appointmentSlot,
       name: this.state.firstName + ' ' + this.state.lastName,
       email: this.state.email,
@@ -183,6 +188,7 @@ handleFetch(response) {
   }
 
   renderAppointmentTimes() {
+    console.log(moment(this.state.appointmentDate).format('YYYY-DD-MM'));
     if (!this.state.loading) {
       const slots = [...Array(14).keys()]
       return slots.map(slot => {

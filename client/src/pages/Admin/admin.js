@@ -104,7 +104,8 @@ class Admin extends Component {
             <li>Name: {appt.name}</li>
             <li>Email: {appt.email}</li>
             <li>Phone: {appt.phone}</li>
-            <li>Date: {appt.date}</li>
+            {/* moment(this.state.appointmentDate).format('dddd[,] MMMM Do[,] YYYY') */}
+            <li>Date: {moment(appt.date,'YYYY-DD-MM').format('dddd[,] MMMM Do[,] YYYY')}</li>
             <li>Time: {moment().hour(8).minute(0).add(appt.slot, 'hours').format('h:mm a')}</li>
                 </ul>
             </div>
