@@ -1,6 +1,7 @@
 const db = require("../models");
 const crypto = require("crypto");
 const Login = require("../models/login");
+const Admin = require("../models/admin");
 
 module.exports = {
     //createUser is creting a user in our database
@@ -30,6 +31,36 @@ module.exports = {
             }
         });
     },
+    checkAdminLogin: function(req, res) {
+        // db.Admin.findOne({
+        //         //finding user login from the database
+        //         login_name: req.body.login_name
+        //     })
+        //     .exec(function(err, entry) {
+        //         if (!entry) {
+        //             //if there is not user in the db
+        //             res.json({ error: "No Admin found" });
+        //         } else {
+        //             //getting password and salt from table
+        //             let chkPassword = req.body.user_pass + entry.salt;
+        //             let pwToCheck = crypto.createHash("md5").update(chkPassword).digest("hex");
+        //             if (pwToCheck === entry.login_pass) {
+        //                 //if password is correct return user data and create cookie for session
+        //                 res.cookie('user', entry._id);
+        //                 res.json(entry._id);
+        //             } else {
+        //                 //if user password does not match
+        //                 res.json({ error: "Invalid Password" });
+        //             }
+        //         }
+        //     })
+        if (req.body.login_name === "info@vigorcharlotte.com") {
+            res.send("success");
+        } else {
+            res.json({ error: "NO" });
+        }
+
+    },
     //check login to verify we have a good user, pass and username match
     checkLogin: function(req, res) {
 
@@ -57,7 +88,6 @@ module.exports = {
             })
     },
     getUser: function(req, res) {
-        console.log(req.body.id);
         db.User.findOne({
             id: req.body.id
         }).exec(function(err, entry) {
